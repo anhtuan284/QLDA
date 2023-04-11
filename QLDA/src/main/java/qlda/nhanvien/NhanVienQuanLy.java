@@ -10,10 +10,12 @@ public class NhanVienQuanLy extends NhanVien {
     
     //================== METHODS =====================
 
-    public NhanVienQuanLy(Date ngayNhamChuc, String ngaySinh, String hoTen, String email, String gioiTinh, LoaiNhanVien loaiNV) throws ParseException {
-        super(ngaySinh, hoTen, email, gioiTinh, loaiNV);
+    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, Date ngayNhamChuc) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
         this.ngayNhamChuc = ngayNhamChuc;
-    } 
+    }
+
+    
 
     public double luongPhu() {
         return getLoaiNV().tinhLuongPhu(0);

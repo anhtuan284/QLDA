@@ -11,6 +11,6 @@ public class Config {
    // ================ CONST ======================
     public static final double soDuAnToiDa = 3;
     public static final double soNhanVienToiDa = 10;
-    public static final double soNhanVienToiThieu = 5; 
-
+    public static final double soNhanVienToiThieu = 5;
+    
 }

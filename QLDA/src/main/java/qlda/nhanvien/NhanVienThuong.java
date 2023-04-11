@@ -6,7 +6,7 @@ public class NhanVienThuong extends NhanVien{
 
     // ================================ METHOD ===================================
     public NhanVienThuong(String ngaySinh, String hoTen, String email, String gioiTinh, LoaiNhanVien loaiNV) throws ParseException {
-        super(ngaySinh, hoTen, email, gioiTinh, loaiNV);
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
     }
     
     @Override

@@ -6,11 +6,11 @@ import java.text.ParseException;
 public class KiemThuVien extends NhanVien{
     private double nError;
 
-    public KiemThuVien(double nError, String ngaySinh, String hoTen, String email, String gioiTinh, LoaiNhanVien loaiNV) throws ParseException {
-        super(ngaySinh, hoTen, email, gioiTinh, loaiNV);
+    public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double nError) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
         this.nError = nError;
     }
-    
+
     @Override
     public double getHeSo() {
         return 1.4;
@@ -18,7 +18,7 @@ public class KiemThuVien extends NhanVien{
 
     @Override
     public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + getLoaiNV().tinhLuongPhu(nError * 200);
+        return LUONG_CO_BAN * getHeSo() + this.loaiNV.tinhLuongPhu(nError * 200);
     }
     
     
