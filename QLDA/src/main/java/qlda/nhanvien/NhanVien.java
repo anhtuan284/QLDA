@@ -26,7 +26,7 @@ public abstract class NhanVien {
     protected List<DuAn> dsDA = new ArrayList<>();
     protected List<ThanNhan> dsTN = new ArrayList<>();
     protected PhongBan phongBan;
-    
+    protected double luong;// them getter setter
     protected static final double LUONG_CO_BAN = 1000;
     private static int nNV = 0;
     {
@@ -41,6 +41,7 @@ public abstract class NhanVien {
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.loaiNV = loaiNV;
+        this.dsDA = new ArrayList<>();
     }
     
     // ====================================== METHOD =======================================
@@ -104,6 +105,8 @@ public abstract class NhanVien {
             System.out.println(tn);
         });
     }
+    
+    
     
     // ================================= GETTER SETTER ====================================
  
@@ -185,6 +188,13 @@ public abstract class NhanVien {
 
     public void setPhongBan(PhongBan phongBan) {
         this.phongBan = phongBan;
+    }
+    public double getLuong() {
+        return luong;
+    }
+
+    public void setLuong(double luong) {
+        this.luong = luong;
     }
     
 }
