@@ -12,13 +12,13 @@ public class KiemThuVien extends NhanVien{
     }
 
     @Override
-    public double getHeSo() {
+    public double layHeSo() {
         return 1.4;
     }
 
     @Override
-    public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + this.nError * 200;
+    public double layPhuCap() {
+        return this.nError * 200;
     }
 
     // =============================== GETTER SETTER =============================

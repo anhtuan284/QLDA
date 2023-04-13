@@ -14,13 +14,13 @@ public class LapTrinhVien extends NhanVien{
     }
     
     @Override
-    public double getHeSo() {
+    public double layHeSo() {
         return 1.5;
     }
 
     @Override
-    public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + this.luongOT;
+    public double layPhuCap() {
+        return this.luongOT;
     }
 
     // ========================================== METHODS =============================================

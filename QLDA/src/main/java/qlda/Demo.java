@@ -16,9 +16,9 @@ public class Demo {
         NhanVien nv2 = new KiemThuVien("Nguyen huu Tu ","20/3/2003", "Nam", "huutu1098@gmail.com", 39);
         
         PhongBan pb1 = new PhongBan("An Ninh");
-        DuAn da1 = new DuAn("Pha nha", "2/2/2022", "3/3/2023", 1200.1, nv2);
-        DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1200.1, nv1);
-        DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1, nv1);
+        DuAn da1 = new DuAn("Pha nha", "2/2/2022", "3/3/2023", 1200.1);
+        DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1200.1);
+        DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1);
         
         System.out.println(da1.isChuaCoNV(nv2));
         

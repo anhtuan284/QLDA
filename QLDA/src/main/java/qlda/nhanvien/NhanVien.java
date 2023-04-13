@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import qlda.config.Config;
@@ -48,9 +49,12 @@ public abstract class NhanVien {
         return String.format("%-7s%-20s%-12s%-5s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), this.getEmail());
     }
     
-    public abstract double getHeSo();
-    public abstract double tinhLuong();
+    public abstract double layHeSo();
+    public abstract double layPhuCap();
 
+    public double tinhLuong() {
+        return LUONG_CO_BAN * layHeSo() + layPhuCap();
+    }
     public int tinhTuoi() {
         LocalDate crrDate = LocalDate.now();
         String []key = Config.f.format(getNgaySinh()).split("/"); 
@@ -105,7 +109,17 @@ public abstract class NhanVien {
 
     @Override
     public boolean equals(Object obj) {
-        return maNV == ((NhanVien)obj).getMaNV();// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        if (obj == this) return true;
+        if (!(obj instanceof NhanVien)) return false;
+        NhanVien temp = (NhanVien) obj;
+        return maNV.equals(temp.maNV);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.maNV);
+        return hash;
     }
     
     

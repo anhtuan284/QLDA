@@ -10,19 +10,19 @@ public class NhanVienQuanLy extends NhanVien {
     
     //================== METHODS =====================
 
-    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, Date ngayNhamChuc) throws ParseException {
+    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, String ngayNhamChuc) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email);
-        this.ngayNhamChuc = ngayNhamChuc;
+        this.ngayNhamChuc = Config.f.parse(ngayNhamChuc);
     }
 
     @Override
-    public double getHeSo() {
+    public double layHeSo() {
         return 1.5;
     }
 
     @Override
-    public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo();
+    public double layPhuCap() {
+        return LUONG_CO_BAN * layHeSo();
     }
     
 }

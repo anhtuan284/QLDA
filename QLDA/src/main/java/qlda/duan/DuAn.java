@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import qlda.config.Config;
 import qlda.nhanvien.NhanVien;
 
@@ -24,12 +25,11 @@ public class DuAn {
     }
 
     public DuAn() {}
-    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, NhanVien chuNhiem) throws ParseException {
+    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi) throws ParseException {
         this.tenDA = tenDA;
         this.thoiDiemBatDau = Config.f.parse(thoiDiemBatDau);
         this.thoiDiemKetThuc = Config.f.parse(thoiDiemKetThuc);
         this.tongKinhPhi = tongKinhPhi;
-        this.chuNhiem = chuNhiem;
     }
     
     // ============================== METHODS ===========================
@@ -69,8 +69,21 @@ public class DuAn {
         }
         this.listNV.removeAll(Arrays.asList(n));
     }
-     
-     
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof DuAn)) return false;
+        DuAn temp = (DuAn) obj;
+        return maDA.equals(temp.maDA);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.maDA);
+        return hash;
+    }
     // ============================== Getter setter ===========================
 
     public String getMaDA() {

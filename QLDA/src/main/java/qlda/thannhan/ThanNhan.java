@@ -31,10 +31,8 @@ public class ThanNhan {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) 
-            return true;
-        if (!(obj instanceof ThanNhan)) 
-            return false;
+        if (obj == this) return true;
+        if (!(obj instanceof ThanNhan)) return false;
         ThanNhan tn = (ThanNhan) obj;
         return tn.getHoTen().equals(this.hoTen) && tn.getMoiQuanHe()== this.moiQuanHe;
     }

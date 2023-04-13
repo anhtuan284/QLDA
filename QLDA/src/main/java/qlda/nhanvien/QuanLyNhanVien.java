@@ -25,7 +25,7 @@ public class QuanLyNhanVien {
 
     public void BangLuongNV() {
         this.dsNhanVien.stream().forEach(n -> {
-            System.out.printf("\nNhan vien %s - Luong tong: %,.1f Trieu VNĐ", n.getHoTen().toUpperCase(), n.tinhLuong());
+            System.out.printf("\nNhan vien %s - Luong tong: %,.1f Trieu VNĐ", n.getHoTen().toUpperCase(), n.layPhuCap());
         });
     }
     public List<NhanVien> timKiem(String tuKhoa) {

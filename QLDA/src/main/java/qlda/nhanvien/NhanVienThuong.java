@@ -10,12 +10,12 @@ public class NhanVienThuong extends NhanVien{
     }
     
     @Override
-    public double getHeSo() {
+    public double layHeSo() {
         return 1;
     }
 
     @Override
-    public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo();
+    public double layPhuCap() {
+        return 0;
     }
 }

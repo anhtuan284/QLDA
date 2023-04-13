@@ -23,7 +23,7 @@ public class QuanLyDuAn{
         System.out.print("Tong kinh phi dau tu: ");
         double tongKP = Config.sc.nextDouble();
         Config.sc.nextLine();
-        return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP, null);
+        return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP);
     }
     
     public void sapXepDuAn() {
@@ -55,8 +55,9 @@ public class QuanLyDuAn{
     public List<DuAn> timKiem(Date ngay) {
         return this.dsDuAn.stream().filter(d -> d.getThoiDiemBatDau().equals(ngay)).collect(Collectors.toList());
     }
-    // void hiển thị danh sách nhân viên...
-     public List<DuAn> getDanhSachDuAn() {
+    
+    // ================================= Getter Setter ===================================
+    public List<DuAn> getDanhSachDuAn() {
         return dsDuAn;
     }
 
