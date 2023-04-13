@@ -7,8 +7,8 @@ import java.text.ParseException;
 public class ThietKeVien extends NhanVien{
     private double bonus;
 
-    public ThietKeVien(String ngaySinh, String hoTen, String email, String gioiTinh, double bonus) throws ParseException {
-        super(ngaySinh, hoTen, email, gioiTinh);
+    public ThietKeVien(String hoTen, String ngaySinh, String gioiTinh, String email, double bonus) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email);
         this.bonus = bonus;
     }
 

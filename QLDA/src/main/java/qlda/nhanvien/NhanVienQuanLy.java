@@ -10,7 +10,7 @@ public class NhanVienQuanLy extends NhanVien {
     
     //================== METHODS =====================
 
-    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, String ngayNhamChuc) throws ParseException {
+    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, String ngayNhamChuc) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email);
         this.ngayNhamChuc = Config.f.parse(ngayNhamChuc);
     }
