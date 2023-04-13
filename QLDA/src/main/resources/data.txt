@@ -1,0 +1,21 @@
+NhanVien nv1 = new LapTrinhVien("Anh Tuan ","20/3/2003", "Nam",  "at@",  20);
+NhanVien nv2 = new KiemThuVien("Nguyen huu Tu ","20/3/2003", "Nam", "huutu1098@gmail.com", 39);
+
+PhongBan pb1 = new PhongBan("An Ninh");
+DuAn da1 = new DuAn("Pha nha", "2/2/2022", "3/3/2023", 1200.1, nv2);
+DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1200.1, nv1);
+DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1, nv1);
+
+nv1.themDA(da2);
+nv1.themDA(da2, da1, da3);
+System.out.println("Các du an NV1 tham gia: ");
+nv1.hienThiDuAnThamGia();
+
+ThanNhan tn1 = new ThanNhan("Thao Van", "2/2/2022", "Nu", "Nguoi yeu");
+ThanNhan tn2 = new ThanNhan("Quoc Huy", "3/2/2022", "Nam", "Nguoi yeu");
+ThanNhan tn3 = new ThanNhan("An Tien", "22/2/2022", "Nam", "Nguoi yeu");
+
+nv1.themTN(tn1);
+nv1.themTN(tn1, tn1, tn2, tn2, tn3);
+System.out.println("\nNguoi than cua NV1:");
+nv1.hienThiTatCaThanNhan();

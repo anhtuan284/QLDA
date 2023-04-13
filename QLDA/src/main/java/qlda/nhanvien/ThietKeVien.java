@@ -7,8 +7,8 @@ import java.text.ParseException;
 public class ThietKeVien extends NhanVien{
     private double bonus;
 
-    public ThietKeVien(String ngaySinh, String hoTen, String email, String gioiTinh, LoaiNhanVien loaiNV, double bonus) throws ParseException {
-        super(ngaySinh, hoTen, email, gioiTinh, loaiNV);
+    public ThietKeVien(String ngaySinh, String hoTen, String email, String gioiTinh, double bonus) throws ParseException {
+        super(ngaySinh, hoTen, email, gioiTinh);
         this.bonus = bonus;
     }
 
@@ -19,6 +19,16 @@ public class ThietKeVien extends NhanVien{
 
     @Override
     public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + getLoaiNV().tinhLuongPhu(bonus);
+        return LUONG_CO_BAN * getHeSo() + this.getBonus();
+    }
+
+    // ============================== GETTER SETTER =================================
+    
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
     }
 }

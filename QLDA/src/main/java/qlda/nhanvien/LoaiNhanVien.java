@@ -2,39 +2,62 @@ package qlda.nhanvien;
 
 
 public enum LoaiNhanVien {
-    NHAN_VIEN_THUONG {
+    NHAN_VIEN_THUONG(1, 0) {
         @Override
         public String getTypeName() {
             return "Nhan Vien Thường";
         }
     },
-    NHAN_VIEN_QUAN_LY {
+    NHAN_VIEN_QUAN_LY(1.2, 0) {
         @Override
         public String getTypeName() {
             return "Nhân Viên Quản Lý";
         }
     },
-    LAP_TRINH_VIEN {
+    LAP_TRINH_VIEN(1.5, 4000) {
         @Override
         public String getTypeName() {
             return "Lập Trình Viên";
         }
     },
-    THIET_KE_VIEN {
+    THIET_KE_VIEN(1.6, 2000) {
         @Override
         public String getTypeName() {
             return "Thiết Kế Viên";
         }
     },
-    KIEM_THU_VIEN {
+    KIEM_THU_VIEN(1.7, 20 * 200) {
         @Override
         public String getTypeName() {
             return "Kiểm Thử Viên";
         }
     };
+    private double heSoLuong;
+    private double phuCap;
+    
+    private LoaiNhanVien(double heSoLuong, double phuCap) {
+        this.heSoLuong = heSoLuong;
+        this.phuCap = phuCap;
+    }
     
     public double tinhLuongPhu(double luong){
         return luong;
     }
     public abstract String getTypeName();
+
+    public double getHeSoLuong() {
+        return heSoLuong;
+    }
+
+    public void setHeSoLuong(double heSoLuong) {
+        this.heSoLuong = heSoLuong;
+    }
+
+    public double getPhuCap() {
+        return phuCap;
+    }
+
+    public void setPhuCap(double phuCap) {
+        this.phuCap = phuCap;
+    }
 }

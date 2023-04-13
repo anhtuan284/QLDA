@@ -11,15 +11,9 @@ public class NhanVienQuanLy extends NhanVien {
     //================== METHODS =====================
 
     public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, Date ngayNhamChuc) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+        super(hoTen, ngaySinh, gioiTinh, email);
         this.ngayNhamChuc = ngayNhamChuc;
     }
-
-    
-
-    public double luongPhu() {
-        return getLoaiNV().tinhLuongPhu(0);
-    } 
 
     @Override
     public double getHeSo() {
@@ -28,7 +22,7 @@ public class NhanVienQuanLy extends NhanVien {
 
     @Override
     public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + luongPhu();
+        return LUONG_CO_BAN * getHeSo();
     }
     
 }

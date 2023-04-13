@@ -6,7 +6,7 @@ public class NhanVienThuong extends NhanVien{
 
     // ================================ METHOD ===================================
     public NhanVienThuong(String ngaySinh, String hoTen, String email, String gioiTinh, LoaiNhanVien loaiNV) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+        super(hoTen, ngaySinh, gioiTinh, email);
     }
     
     @Override
@@ -16,6 +16,6 @@ public class NhanVienThuong extends NhanVien{
 
     @Override
     public double tinhLuong() {
-        return LUONG_CO_BAN * getHeSo() + getLoaiNV().tinhLuongPhu(0);
+        return LUONG_CO_BAN * getHeSo();
     }
 }

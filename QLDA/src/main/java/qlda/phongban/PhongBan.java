@@ -44,11 +44,11 @@ public class PhongBan {
 
     @Override
     public String toString() {
-        return String.format("-Ten Phong Ban: %s", this.tenPB);
+        return String.format("- Ten Phong Ban: %s", this.tenPB);
     }
     
     
-//======== getter setter =========
+//======================== getter setter =============================
     public String getTenPB() {
         return tenPB;
     }

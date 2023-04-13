@@ -38,7 +38,10 @@ public class DuAn {
     public String toString() {
         return String.format("%-7s%-20s%-12s%-12s%-8.1f%s", this.maDA, this.tenDA, Config.f.format(this.thoiDiemBatDau),Config.f.format(this.thoiDiemKetThuc), this.tongKinhPhi, this.chuNhiem.getMaNV());
     }
-    
+
+    public boolean isChuaCoNV(NhanVien nv) {
+        return this.listNV.contains(nv);
+    }
     public void hienThi() {
         System.out.println("=== DANH SACH NHAN VIEN THAM GIA DU AN ===");
         System.out.println("==\nChu nhiem du an:");
@@ -60,12 +63,14 @@ public class DuAn {
         this.listNV.addAll(Arrays.asList(n));
     }
     
-     public void xoaNhanVien(NhanVien... n) {
+    public void xoaNhanVien(NhanVien... n) {
         for (NhanVien nv: n) {
             nv.getDsDA().remove(this);
         }
         this.listNV.removeAll(Arrays.asList(n));
     }
+     
+     
     // ============================== Getter setter ===========================
 
     public String getMaDA() {

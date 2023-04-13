@@ -3,6 +3,7 @@ package qlda.duan;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import qlda.config.Config;
 
 public class QuanLyDuAn{
     private List<DuAn> dsDuAn = new ArrayList<>();
-    
+
     public DuAn nhapDA() throws ParseException
     {
         System.out.print("\nTen du an: ");
@@ -22,14 +23,16 @@ public class QuanLyDuAn{
         System.out.print("Tong kinh phi dau tu: ");
         double tongKP = Config.sc.nextDouble();
         Config.sc.nextLine();
-        return new DuAn(tenDuAn, Config.f.parse(ngayBD), Config.f.parse(ngayDKKT), tongKP);
+        return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP, null);
     }
-     public void sapXepDuAn() {
-        this.dsDuAn.sort((d1, d2) -> {
-            double t1 = d1.getTongKinhPhi();
-            double t2 = d2.getTongKinhPhi();
-            return -(t1 > t2 ? 1 : (t1 < t2 ? -1 : 0));
-        });
+    
+    public void sapXepDuAn() {
+        this.dsDuAn.sort(Comparator.comparing(DuAn::getTongKinhPhi));
+        
+    }
+    public void sapXepDuAn2() {
+        this.dsDuAn.sort(Comparator.comparing(DuAn::getTongKinhPhi).thenComparing(DuAn::getTenDA));
+        
     }
     public void hienThi() {
         this.sapXepDuAn();
@@ -46,7 +49,7 @@ public class QuanLyDuAn{
 
     public List<DuAn> timKiem(String tuKhoa) {
         return this.dsDuAn.stream().filter(d -> d.getTenDA().contains(tuKhoa) || d.getMaDA().contains(tuKhoa)).
-                collect(Collectors.toList());
+            collect(Collectors.toList());
     }
 
     public List<DuAn> timKiem(Date ngay) {

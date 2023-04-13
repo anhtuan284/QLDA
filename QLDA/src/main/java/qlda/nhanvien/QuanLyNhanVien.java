@@ -22,15 +22,10 @@ public class QuanLyNhanVien {
     public void hienThi() {
         this.dsNhanVien.stream().forEach(nv -> System.out.println(nv));
     }
-    public void tinhLuongNV() {
-        this.dsNhanVien.stream().forEach(n -> {
-            n.setLuong(n.tinhLuong());
-        });
-    }
 
     public void BangLuongNV() {
         this.dsNhanVien.stream().forEach(n -> {
-            System.out.printf("\nNhan vien %s - Luong tong: %,.1f Trieu VNĐ", n.getHoTen().toUpperCase(), n.getLuong());
+            System.out.printf("\nNhan vien %s - Luong tong: %,.1f Trieu VNĐ", n.getHoTen().toUpperCase(), n.tinhLuong());
         });
     }
     public List<NhanVien> timKiem(String tuKhoa) {
@@ -46,6 +41,9 @@ public class QuanLyNhanVien {
         return this.dsNhanVien.stream().filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi).
                 collect(Collectors.toList());
     }
+    
+    
+    // =================================== getter setter ===================================
     public List<NhanVien> getDanhSachNhanVien() {
         return dsNhanVien;
     }

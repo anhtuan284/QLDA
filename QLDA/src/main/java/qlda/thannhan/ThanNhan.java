@@ -26,17 +26,15 @@ public class ThanNhan {
     // ========================= METHODS ===============================
     @Override
     public String toString() {
-        return String.format("%-20s%-12s%-4s%-8s",this.hoTen, Config.f.format(this.ngaySinh), this.gioiTinh, this.moiQuanHe);
+        return String.format("%-20s%-12s%-6s%-8s",this.hoTen, Config.f.format(this.ngaySinh), this.gioiTinh, this.moiQuanHe);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) {
+        if (obj == this) 
             return true;
-        }
-        if (!(obj instanceof ThanNhan)) {
+        if (!(obj instanceof ThanNhan)) 
             return false;
-        }
         ThanNhan tn = (ThanNhan) obj;
         return tn.getHoTen().equals(this.hoTen) && tn.getMoiQuanHe()== this.moiQuanHe;
     }
