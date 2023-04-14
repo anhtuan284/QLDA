@@ -9,47 +9,47 @@ import java.util.stream.Collectors;
 
 
 public class QuanLyNhanVien {
-    private List<NhanVien> dsNhanVien = new ArrayList<>();
+    private List<NhanVien> dsNV = new ArrayList<>();
     
     public void themNhanVien(NhanVien... a) {
-        this.dsNhanVien.addAll(Arrays.asList(a));
+        this.dsNV.addAll(Arrays.asList(a));
     }
 
     public void xoaNhanVien(NhanVien... a) {
-        this.dsNhanVien.removeAll(Arrays.asList(a));
+        this.dsNV.removeAll(Arrays.asList(a));
     }
 
     public void hienThi() {
-        this.dsNhanVien.stream().forEach(nv -> System.out.println(nv));
+        this.dsNV.stream().forEach(nv -> System.out.println(nv));
     }
 
     public void BangLuongNV() {
-        this.dsNhanVien.stream().forEach(n -> {
-            System.out.printf("\nNhan vien %s - Luong tong: %,.1f Trieu VNĐ", n.getHoTen().toUpperCase(), n.layPhuCap());
+        this.dsNV.stream().forEach(n -> {
+            System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getHoTen().toUpperCase(), n.tinhLuong());
         });
     }
-    public List<NhanVien> timKiem(String tuKhoa) {
-        return this.dsNhanVien.stream().filter(n -> n.getHoTen().contains(tuKhoa) || n.getMaNV().contains(tuKhoa))
+    public List<NhanVien> timKiem(String kw) {
+        return this.dsNV.stream().filter(n -> n.getHoTen().contains(kw) || n.getMaNV().contains(kw))
                 .collect(Collectors.toList());
     }
 
     public List<NhanVien> timKiem(Date ngay) {
-        return this.dsNhanVien.stream().filter(n -> n.getNgaySinh().equals(ngay)).collect(Collectors.toList());
+        return this.dsNV.stream().filter(n -> n.getNgaySinh().equals(ngay)).collect(Collectors.toList());
     }
 
     public List<NhanVien> timKiem(int dau, int cuoi) {
-        return this.dsNhanVien.stream().filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi).
+        return this.dsNV.stream().filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi).
                 collect(Collectors.toList());
     }
     
     
     // =================================== getter setter ===================================
-    public List<NhanVien> getDanhSachNhanVien() {
-        return dsNhanVien;
+    public List<NhanVien> getDsNV() {
+        return dsNV;
     }
 
-    public void setDanhSachNhanVien(List<NhanVien> danhSachNhanVien) {
-        this.dsNhanVien = danhSachNhanVien;
+    public void setDsNV(List<NhanVien> danhSachNhanVien) {
+        this.dsNV = danhSachNhanVien;
     }
 }
 

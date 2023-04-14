@@ -8,6 +8,8 @@ import qlda.config.Config;
 
 public class QuanLyPhongBan {
     List<PhongBan> dsPhongBan = new ArrayList<>();
+
+    public QuanLyPhongBan() {}
     
     public PhongBan nhapPhongBan() {
         System.out.print("Ten phong ban: ");

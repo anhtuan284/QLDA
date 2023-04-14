@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import qlda.config.Config;
 import qlda.nhanvien.NhanVien;
 
@@ -34,7 +35,15 @@ public class ThanNhan {
         if (obj == this) return true;
         if (!(obj instanceof ThanNhan)) return false;
         ThanNhan tn = (ThanNhan) obj;
-        return tn.getHoTen().equals(this.hoTen) && tn.getMoiQuanHe()== this.moiQuanHe;
+        return tn.getHoTen().equals(this.hoTen) && tn.getMoiQuanHe().equals(this.moiQuanHe);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.hoTen);
+        hash = 23 * hash + Objects.hashCode(this.moiQuanHe);
+        return hash;
     }
     
     

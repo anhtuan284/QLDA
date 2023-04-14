@@ -3,9 +3,7 @@ package qlda.nhanvien;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -62,14 +60,14 @@ public abstract class NhanVien {
         return Period.between(dOB, crrDate).getYears();
     }
     
-    public boolean isChuaCoDuAn(DuAn da) {
-        return this.getDsDA().stream().filter(ds -> ds.getMaDA().contains(da.getMaDA())).collect(Collectors.toList()).isEmpty();
+    public boolean isCoDuAn(DuAn da) {
+        return this.dsDA.contains(da); // contains su dung equal & hashCode kiem tra 
     }
     
     // tham số đầu vào của addAll chỉ chấp nhận kiểu Collection nên phải dùng Array.asList()
     public void themDA(DuAn... da) {
         for (DuAn duAn: da) 
-            if (isChuaCoDuAn(duAn))
+            if (isCoDuAn(duAn))
                 dsDA.add(duAn);
 //        dsDA.addAll(Arrays.asList(da));
     }
@@ -84,20 +82,17 @@ public abstract class NhanVien {
         });
     }
     
-    public boolean isChuaCoThanNhan(ThanNhan thanNhan) {
-        for (ThanNhan tn : dsTN) 
-            if (tn.equals(thanNhan)) // ghi đè equal trong thân nhân rồi
-                return false;
-        return true;
+    public boolean isCoTN(ThanNhan thanNhan) {
+        return this.dsTN.contains(thanNhan);
     }
     
     public void themTN(ThanNhan... tn) {
         for (ThanNhan thanNhan: tn) 
-            if (isChuaCoThanNhan(thanNhan))
+            if (isCoTN(thanNhan))
                 dsTN.add(thanNhan);
     }
     
-    public void xoaDA(ThanNhan tn) {
+    public void xoaTN(ThanNhan tn) {
         dsTN.remove(tn);
     }
     

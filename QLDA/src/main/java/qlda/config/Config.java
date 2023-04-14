@@ -13,4 +13,33 @@ public class Config {
     public static final double soNhanVienToiDa = 10;
     public static final double soNhanVienToiThieu = 5;
     
+        public static void menu() {
+        System.out.println("========================= MENU =============================");
+        System.out.println("| [1]: Quan ly nhan vien                                   |");
+        System.out.println("| [2]: Quan ly du an                                       |");
+        System.out.println("| [0]: Thoat                                               |");
+        System.out.println("============================================================");
+    }
+    
+    public static void menuQLNV() {
+        System.out.println("==================== Quan Ly Nhan Vien =====================");
+        System.out.println("| [1]: Nhap Nhan vien");
+        System.out.println("| [2]: Them Nhan vien");
+        System.out.println("| [3]: Xoa Nhan vien");
+        System.out.println("| [4]: Hien thi bang luong");
+        System.out.println("| [5]: Hien danh sach Nhan Vien");
+        System.out.println("| [6]: Tim kiem Nhan Vien");
+        System.out.println("| [7]: Danh sach Than Nhan");
+        System.out.println("| [8]: Danh sach Du An");
+        System.out.println("| [0]: Thoat                                               |");
+        System.out.println("============================================================");
+    }
+    
+    public static void menuQLDA() {
+        System.out.println("==================== Quan Ly Du An ====================");
+        System.out.println("| [1]: Quan ly nhan vien                               ");
+        System.out.println("| [2]: Quan ly du an                                       |");
+        System.out.println("| [0]: Thoat                                               |");
+        System.out.println("============================================================");
+    }
 }

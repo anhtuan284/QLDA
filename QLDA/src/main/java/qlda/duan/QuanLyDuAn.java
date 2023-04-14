@@ -12,6 +12,7 @@ import qlda.config.Config;
 public class QuanLyDuAn{
     private List<DuAn> dsDuAn = new ArrayList<>();
 
+    public QuanLyDuAn() {}
     public DuAn nhapDA() throws ParseException
     {
         System.out.print("\nTen du an: ");
