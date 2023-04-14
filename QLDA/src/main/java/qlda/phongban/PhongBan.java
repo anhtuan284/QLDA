@@ -61,6 +61,11 @@ public class PhongBan {
         return tenPB;
     }
 
+    public List<NhanVien> getDsNVTrucThuoc() {
+        return dsNVTrucThuoc;
+    }
+
+    
     public void setTenPB(String tenPB) {
         this.tenPB = tenPB;
     }

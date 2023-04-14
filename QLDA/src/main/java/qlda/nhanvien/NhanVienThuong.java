@@ -8,7 +8,7 @@ public class NhanVienThuong extends NhanVien{
     public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email);
     }
-    
+
     @Override
     public double layHeSo() {
         return 1;

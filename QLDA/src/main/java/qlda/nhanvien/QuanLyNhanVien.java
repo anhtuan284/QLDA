@@ -1,26 +1,73 @@
-
 package qlda.nhanvien;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import qlda.config.Config;
+import qlda.phongban.QuanLyPhongBan;
 
 
 public class QuanLyNhanVien {
     private List<NhanVien> dsNV = new ArrayList<>();
+
+    public QuanLyNhanVien() {}
     
-    public void themNhanVien(NhanVien... a) {
-        this.dsNV.addAll(Arrays.asList(a));
+    public boolean isTonTaiNV(NhanVien nv) {
+        return this.dsNV.contains(nv);
+    }
+    
+    public NhanVien nhapNhanVien() throws ParseException {
+        System.out.print("\nHo ten: ");
+        String hoTen = Config.sc.nextLine();
+        System.out.print("Ngay sinh (dd/MM/yyyy): ");
+        String ngaySinh = Config.sc.nextLine();
+        System.out.print("Gioi tinh: ");
+        String gioiTinh = Config.sc.nextLine();
+        System.out.print("Email: ");
+        String email = Config.sc.nextLine();
+        System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
+        switch(Integer.parseInt(Config.sc.nextLine())) {
+            case 1 -> new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email);
+            case 2 -> {
+                System.out.print("Nhap ngay nham chuc: ");
+                String ngayNC = Config.sc.nextLine();
+                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, ngayNC);
+            }
+            case 3 -> {
+                System.out.print("Luong OT: ");
+                double luongOT = Double.parseDouble(Config.sc.nextLine());
+                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, luongOT);
+            }
+            case 4 -> {
+                System.out.print("Bonus: ");
+                double bonus = Double.parseDouble(Config.sc.nextLine());
+                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, bonus);
+            }
+            case 5 -> {
+                System.out.print("So loi phat hien: ");
+                int nError = Integer.parseInt(Config.sc.nextLine());
+                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, nError);
+            }
+        }
+        return null;
+    }
+    public void themNhanVien(NhanVien... nvs) {
+        for (NhanVien nv: nvs)
+            if (!isTonTaiNV(nv))
+                dsNV.add(nv);
     }
 
-    public void xoaNhanVien(NhanVien... a) {
-        this.dsNV.removeAll(Arrays.asList(a));
+    public void xoaNhanVien(NhanVien... nvs) {
+        for (NhanVien nv: nvs)
+            if (!isTonTaiNV(nv))
+                dsNV.remove(nv);
     }
 
     public void hienThi() {
-        this.dsNV.stream().forEach(nv -> System.out.println(nv));
+        this.dsNV.stream().forEach(System.out :: println);
     }
 
     public void BangLuongNV() {
@@ -28,6 +75,7 @@ public class QuanLyNhanVien {
             System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getHoTen().toUpperCase(), n.tinhLuong());
         });
     }
+    
     public List<NhanVien> timKiem(String kw) {
         return this.dsNV.stream().filter(n -> n.getHoTen().contains(kw) || n.getMaNV().contains(kw))
                 .collect(Collectors.toList());
@@ -41,7 +89,17 @@ public class QuanLyNhanVien {
         return this.dsNV.stream().filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi).
                 collect(Collectors.toList());
     }
+    public List<NhanVien> timKiem(QuanLyPhongBan qlpb, String maPB) {
+        return qlpb.timKiem(maPB).get(0).getDsNVTrucThuoc();
+    }
     
+    public void hienThiDSTN(String kw) {
+        this.timKiem(kw).get(0).hienThiTatCaThanNhan();
+    }
+    
+    public void hienThiDSDA(String kw) {
+        this.timKiem(kw).get(0).hienThiDuAnThamGia();
+    }
     
     // =================================== getter setter ===================================
     public List<NhanVien> getDsNV() {

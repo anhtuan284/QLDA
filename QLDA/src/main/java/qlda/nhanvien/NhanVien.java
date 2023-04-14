@@ -31,7 +31,6 @@ public abstract class NhanVien {
     }
     
     
-    
     public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email) throws ParseException {
         this.hoTen = hoTen;
         this.ngaySinh = Config.f.parse(ngaySinh);
@@ -86,7 +85,7 @@ public abstract class NhanVien {
     
     public void themTN(ThanNhan... tn) {
         for (ThanNhan thanNhan: tn) 
-            if (isCoTN(thanNhan))
+            if (!isCoTN(thanNhan))
                 dsTN.add(thanNhan);
     }
     
@@ -95,9 +94,7 @@ public abstract class NhanVien {
     }
     
     public void hienThiTatCaThanNhan() {
-        dsTN.forEach(tn -> {
-            System.out.println(tn);
-        });
+        dsTN.forEach(System.out :: println);
     }
 
     @Override

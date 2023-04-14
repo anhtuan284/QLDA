@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import qlda.config.Config;
+import qlda.nhanvien.QuanLyNhanVien;
 
 public class QuanLyDuAn{
     private List<DuAn> dsDA = new ArrayList<>();
@@ -26,27 +27,52 @@ public class QuanLyDuAn{
         Config.sc.nextLine();
         return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP);
     }
-    public boolean isTonTai(DuAn da) {
+    public boolean isTonTaiDA(DuAn da) {
         return this.dsDA.contains(da);
     }
     public void themDA(DuAn... da) {
         for (DuAn d: da)
-            if (!isTonTai(d))
+            if (!isTonTaiDA(d))
                 this.dsDA.add(d);
     }
     
-    public void sapXepDuAn() {
-        this.dsDA.sort(Comparator.comparing(DuAn::getTongKinhPhi).thenComparing(DuAn::getTenDA));
-        
-    }
-    public void hienThi() {
-        this.sapXepDuAn();
-        this.dsDA.stream().forEach(d -> System.out.println(d));
-    }
-
     public void xoaDuAn(DuAn... d) {
         this.dsDA.removeAll(Arrays.asList(d));
     }
+    
+    public void suaDA(DuAn da) throws ParseException {
+        System.out.println("Thong tin can sua: \n[1]: Ten Du An\n[2]: Thoi Diem Bat Dau\n[3]: Thoi Diem Ket Thuc\n[4]: Tong Kinh Phi");
+        Config.sc.nextLine();
+        switch (Integer.parseInt(Config.sc.nextLine())) {
+            case 1 -> {
+                System.out.print("Ten du an: ");
+                da.setMaDA(Config.sc.nextLine());
+            }
+            case 2 -> {
+                System.out.print("Thoi gian bat dau: ");
+                da.setThoiDiemBatDau(Config.f.parse(Config.sc.nextLine()));
+            }
+            case 3 -> {
+                System.out.print("Thoi gian ket thuc: ");
+                da.setThoiDiemKetThuc(Config.f.parse(Config.sc.nextLine()));
+            }
+            case 4 -> {
+                System.out.print("Tong kinh phi: ");
+                da.setTongKinhPhi(Double.parseDouble(Config.sc.nextLine()));
+            }
+            default -> System.out.println("Nhap sai lua chon!\nSUA THONG TIN THAT BAI!"); 
+        }
+        System.out.println("SUA THONG TIN THANH CONG !");
+    }
+    
+    public void sapXepDuAn() {
+        this.dsDA.sort(Comparator.comparing(DuAn::getTongKinhPhi).reversed());
+    }
+    
+    public void hienThi() {
+        this.dsDA.stream().forEach(System.out :: println);
+    }
+
 
     public List<DuAn> timKiem(String tuKhoa) {
         return this.dsDA.stream().filter(d -> d.getTenDA().contains(tuKhoa) || d.getMaDA().contains(tuKhoa)).
@@ -57,11 +83,16 @@ public class QuanLyDuAn{
         return this.dsDA.stream().filter(d -> d.getThoiDiemBatDau().equals(ngay)).collect(Collectors.toList());
     }
     
+    public boolean ganChuNhiem(QuanLyNhanVien qlnv, String maDA, String maNV) {
+        return this.timKiem(maDA).get(0).themCN(qlnv.timKiem(maNV).get(0));
+    }
+    public void ganNhanVien(QuanLyNhanVien qlnv, String maDA, String maNV) {
+        this.timKiem(maDA).get(0).themNV(qlnv.timKiem(maNV).get(0));
+    }
     // ================================= Getter Setter ===================================
     public List<DuAn> getDanhSachDuAn() {
         return dsDA;
     }
-
     public void setDanhSachDuAn(List<DuAn> danhSachDuAn) {
         this.dsDA = danhSachDuAn;
     }

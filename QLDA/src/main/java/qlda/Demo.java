@@ -26,64 +26,49 @@ public class Demo {
         NhanVien nv3 = new NhanVienQuanLy("Nguyen Huu Tinh", "20/1/2001", "Nam", "tinh@gmail.com", "20/12/2022");
         NhanVien nv4 = new NhanVienThuong("Nguyen huu Tu ","20/3/2003", "Nam", "huutu1098@gmail.com");
         NhanVien nv5 = new ThietKeVien("Nguyen huu Tu ","20/3/2003", "Nam", "huutu1098@gmail.com", 50);
-        
         PhongBan pb1 = new PhongBan("Phong Nhan Su");
         PhongBan pb2 = new PhongBan("Phong Cong Nghe Thong Tin");
         PhongBan pb3 = new PhongBan("Phong Ke Toan");
         PhongBan pb4 = new PhongBan("Phong An Ninh");
-        PhongBan pb5 = new PhongBan("Phong Ke Toan");
-        
-        DuAn da1 = new DuAn("Pha nha", "2/2/2022", "3/3/2023", 1200.1);
-        DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1200.1);
-        DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1);
-        DuAn da4 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1);
-        DuAn da5 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1200.1);
-        
-        
+        PhongBan pb5 = new PhongBan("Phong Ke Kiem");
+        DuAn da1 = new DuAn("Pha nha", "2/2/2022", "3/3/2023", 120.1);
+        DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1300.1);
+        DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1560.1);
+        DuAn da4 = new DuAn("Quy Mui", "2/2/2022", "3/3/2023", 3200.1);
+        DuAn da5 = new DuAn("Tien Ma", "2/2/2022", "3/3/2023", 2200.1);
         ThanNhan tn1 = new ThanNhan("Thao Van", "9/11/2003", "Nu", "Nguoi yeu cua Huu Tu");
         ThanNhan tn2 = new ThanNhan("Quoc Huy", "3/2/2022", "Nam", "friend");
         ThanNhan tn3 = new ThanNhan("An Tien", "22/2/2022", "Nam", "super");
-        
         quanLyNhanVien.themNhanVien(nv1, nv2, nv3, nv4, nv5);
-        quanLyDuAn.themDA(da1, da2, da3);
+        quanLyDuAn.themDA(da1, da2, da3, da4, da5);
         quanLyPhongBan.themPB(pb1, pb2, pb3);
-        
         pb1.themNV(nv1, nv2, nv3, nv1, nv3);
         pb2.themNV(nv4);
         pb3.themNV(nv5);
-        
         da1.themNV(nv1, nv2);
         da2.themNV(nv3);
-        da3.themNV(nv4, nv5);
-        
+        da3.themNV(nv4, nv5); 
         da1.setChuNhiem(nv1);
         da2.setChuNhiem(nv3);
         da3.setChuNhiem(nv5);
-        
-        nv1.themTN(tn2);
+        nv1.themTN(tn2, tn1);
         nv2.themTN(tn1);
-        da1.hienThiDSNV();
         nv1.themDA(da1, da2, da3);
-        nv1.themDA(da4, da5);
-        quanLyPhongBan.themPB(pb4, pb1, pb3, pb5);
-//        System.out.printf("%-7s%-20s%-16s%-18s%-13s%s\n", "Ma DA", "Ten Du An", "Thoi Gian BD", "Thoi Gian DKKT", "Kinh Phi", "Chu Nhiem");
-//        nv1.hienThiDuAnThamGia2();
-        quanLyPhongBan.hienThi();
-        //System.out.println(da1.isChuaCoNV(nv2));
-        
-//        nv1.themDA(da2);
-//        nv1.themDA(da2, da1, da3);
-//        System.out.println("Các du an NV1 tham gia: ");
-//        nv1.hienThiDuAnThamGia();
-        
-//        ThanNhan tn1 = new ThanNhan("Thao Van", "2/2/2022", "Nu", "Nguoi yeu");
-//        ThanNhan tn2 = new ThanNhan("Quoc Huy", "3/2/2022", "Nam", "Nguoi yeu");
-//        ThanNhan tn3 = new ThanNhan("An Tien", "22/2/2022", "Nam", "Nguoi yeu");
-//        
-//        nv1.themTN(tn1);
-//        nv1.themTN(tn1, tn1, tn2, tn2, tn3);
-//        System.out.println("\nNguoi than cua NV1:");
-//        nv1.hienThiTatCaThanNhan();
-        
+        nv1.themDA(da4, da5);    
+        boolean isLoop = true;
+        do {
+            Config.menu();
+            System.out.print("~> Nhap lua chon: ");
+            switch (Integer.parseInt(Config.sc.nextLine())) {
+                case 1 -> {
+                   
+                }
+                case 2 -> {
+                    
+                }
+                case 0 -> isLoop = false;
+                default -> System.out.println("NHAP SAI !! VUI LONG NHAP LAI");
+            }
+        } while(isLoop);
     }
 }
