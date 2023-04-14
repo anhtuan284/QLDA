@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import qlda.config.Config;
 
 public class QuanLyDuAn{
-    private List<DuAn> dsDuAn = new ArrayList<>();
+    private List<DuAn> dsDA = new ArrayList<>();
 
     public QuanLyDuAn() {}
     public DuAn nhapDA() throws ParseException
@@ -26,43 +26,43 @@ public class QuanLyDuAn{
         Config.sc.nextLine();
         return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP);
     }
+    public boolean isTonTai(DuAn da) {
+        return this.dsDA.contains(da);
+    }
+    public void themDA(DuAn... da) {
+        for (DuAn d: da)
+            if (!isTonTai(d))
+                this.dsDA.add(d);
+    }
     
     public void sapXepDuAn() {
-        this.dsDuAn.sort(Comparator.comparing(DuAn::getTongKinhPhi));
-        
-    }
-    public void sapXepDuAn2() {
-        this.dsDuAn.sort(Comparator.comparing(DuAn::getTongKinhPhi).thenComparing(DuAn::getTenDA));
+        this.dsDA.sort(Comparator.comparing(DuAn::getTongKinhPhi).thenComparing(DuAn::getTenDA));
         
     }
     public void hienThi() {
         this.sapXepDuAn();
-        this.dsDuAn.stream().forEach(d -> System.out.println(d));
-    }
-
-    public void themDuAn(DuAn... d) {
-        this.dsDuAn.addAll(Arrays.asList(d));
+        this.dsDA.stream().forEach(d -> System.out.println(d));
     }
 
     public void xoaDuAn(DuAn... d) {
-        this.dsDuAn.removeAll(Arrays.asList(d));
+        this.dsDA.removeAll(Arrays.asList(d));
     }
 
     public List<DuAn> timKiem(String tuKhoa) {
-        return this.dsDuAn.stream().filter(d -> d.getTenDA().contains(tuKhoa) || d.getMaDA().contains(tuKhoa)).
+        return this.dsDA.stream().filter(d -> d.getTenDA().contains(tuKhoa) || d.getMaDA().contains(tuKhoa)).
             collect(Collectors.toList());
     }
 
     public List<DuAn> timKiem(Date ngay) {
-        return this.dsDuAn.stream().filter(d -> d.getThoiDiemBatDau().equals(ngay)).collect(Collectors.toList());
+        return this.dsDA.stream().filter(d -> d.getThoiDiemBatDau().equals(ngay)).collect(Collectors.toList());
     }
     
     // ================================= Getter Setter ===================================
     public List<DuAn> getDanhSachDuAn() {
-        return dsDuAn;
+        return dsDA;
     }
 
     public void setDanhSachDuAn(List<DuAn> danhSachDuAn) {
-        this.dsDuAn = danhSachDuAn;
+        this.dsDA = danhSachDuAn;
     }
 }

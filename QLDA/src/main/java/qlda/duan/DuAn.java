@@ -36,17 +36,17 @@ public class DuAn {
 
     @Override
     public String toString() {
-        return String.format("%-7s%-20s%-12s%-12s%-8.1f%s", this.maDA, this.tenDA, Config.f.format(this.thoiDiemBatDau),Config.f.format(this.thoiDiemKetThuc), this.tongKinhPhi, this.chuNhiem.getMaNV());
+        return String.format("%-7s%-20s%-16s%-18s%-13.1f%s", this.maDA, this.tenDA, Config.f.format(this.thoiDiemBatDau),Config.f.format(this.thoiDiemKetThuc), this.tongKinhPhi, this.chuNhiem != null ? this.chuNhiem.getMaNV(): "null");
     }
 
-    public void hienThi() {
-        System.out.printf("===================== DU AN : %s ==============================\n", this.tenDA);
+    public void hienThiDSNV() {
+        System.out.printf("===================== DU AN : %s ============================\n", this.tenDA);
         System.out.printf("+ Chu nhiem du an:\n%s\n", isCoCN() ? this.chuNhiem : "Chua co chu nhiem");
         System.out.println("- Danh sach nhan vien:");
         if (this.dsNVThamGia.isEmpty()) 
             System.out.println("Chua co nhan vien tham gia");
         else 
-            this.dsNVThamGia.stream().forEach(n -> System.out.println(n));
+            this.dsNVThamGia.forEach(System.out :: println);
         System.out.printf("=====================================================================\n", this.tenDA);
     }
     
@@ -55,10 +55,9 @@ public class DuAn {
     }
     
     public void themNV(NhanVien... n) {
-        for (NhanVien nv: n) {
-            nv.getDsDA().add(this);
-        }
-        this.dsNVThamGia.addAll(Arrays.asList(n));
+        for (NhanVien nv: n) 
+            if (!isCoNV(nv))
+                dsNVThamGia.add(nv);
     }
     
     public void xoaNV(NhanVien... n) {
@@ -76,7 +75,6 @@ public class DuAn {
         this.chuNhiem = nv;
         return true;
     }
-
     public void xoaCN() {
         this.chuNhiem = null;
     }
@@ -86,15 +84,17 @@ public class DuAn {
         if (obj == this) return true;
         if (!(obj instanceof DuAn)) return false;
         DuAn temp = (DuAn) obj;
-        return maDA.equals(temp.maDA);
+        return maDA.equals(temp.maDA) || tenDA.equalsIgnoreCase(temp.tenDA);
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.maDA);
+        hash = 71 * hash + Objects.hashCode(this.maDA);
+        hash = 71 * hash + Objects.hashCode(this.tenDA);
         return hash;
     }
+
     // ============================== Getter setter ===========================
 
     public String getMaDA() {

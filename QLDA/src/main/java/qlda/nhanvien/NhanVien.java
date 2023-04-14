@@ -67,7 +67,7 @@ public abstract class NhanVien {
     // tham số đầu vào của addAll chỉ chấp nhận kiểu Collection nên phải dùng Array.asList()
     public void themDA(DuAn... da) {
         for (DuAn duAn: da) 
-            if (isCoDuAn(duAn))
+            if (!isCoDuAn(duAn))
                 dsDA.add(duAn);
 //        dsDA.addAll(Arrays.asList(da));
     }
@@ -77,9 +77,7 @@ public abstract class NhanVien {
     }
     
     public void hienThiDuAnThamGia() {
-        dsDA.forEach(da -> {
-            System.out.println(da);
-        });
+        dsDA.forEach(System.out :: println);
     }
     
     public boolean isCoTN(ThanNhan thanNhan) {

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import qlda.config.Config;
 
 public class QuanLyPhongBan {
-    List<PhongBan> dsPhongBan = new ArrayList<>();
+    List<PhongBan> dsPB = new ArrayList<>();
 
     public QuanLyPhongBan() {}
     
@@ -17,27 +17,35 @@ public class QuanLyPhongBan {
         return new PhongBan(tenPB);
     }
 
+    public boolean isTonTai(PhongBan pb) {
+        return this.dsPB.contains(pb);
+    }
     public void hienThi() {
-        this.dsPhongBan.stream().forEach(pb -> System.out.println(pb.getTenPB()));
+        this.dsPB.stream().forEach(System.out :: println);
     }
 
-    public void themPhongBan(PhongBan... pb) {
-        this.dsPhongBan.addAll(Arrays.asList(pb));
+    public void themPB(PhongBan... pbs) {
+        for (PhongBan pb : pbs)
+            if (!isTonTai(pb))
+                this.dsPB.addAll(Arrays.asList(pb));
     }
 
-    public void xoaPhongBan(PhongBan... pb) {
-        this.dsPhongBan.removeAll(Arrays.asList(pb));
+    public void xoaPB(PhongBan... pbs) {
+        for (PhongBan pb : pbs)
+            if (isTonTai(pb))
+                this.dsPB.remove(pb);
     }
 
-    public List<PhongBan> timKiem(String tuKhoa) {
-        return this.dsPhongBan.stream().filter(pb -> pb.getTenPB().contains(tuKhoa)).collect(Collectors.toList());
+    public List<PhongBan> timKiem(String kw) {
+        return this.dsPB.stream().filter(pb -> pb.getTenPB().contains(kw)).collect(Collectors.toList());
     }
-
+       
+    // ============================== Getter Setter =====================================
     public List<PhongBan> getDanhSachPhongBan() {
-        return dsPhongBan;
+        return dsPB;
     }
 
     public void setDanhSachPhongBan(List<PhongBan> danhSachPhongBan) {
-        this.dsPhongBan = danhSachPhongBan;
+        this.dsPB = danhSachPhongBan;
     }
 }
