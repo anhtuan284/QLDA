@@ -69,7 +69,11 @@ public class QuanLyNhanVien {
     public void hienThi() {
         this.dsNV.stream().forEach(System.out :: println);
     }
-
+//    public void tinhLuongCacNhanVien() {
+//        this.dsNV.stream().forEach(n -> {
+//            n.setLuong(n.tinhLuong());
+//        });
+//    }
     public void BangLuongNV() {
         this.dsNV.stream().forEach(n -> {
             System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getHoTen().toUpperCase(), n.tinhLuong());

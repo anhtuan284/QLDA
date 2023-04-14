@@ -1,6 +1,7 @@
 package qlda;
 
 import java.text.ParseException;
+import java.util.Date;
 import qlda.config.Config;
 import qlda.duan.DuAn;
 import qlda.duan.QuanLyDuAn;
@@ -61,7 +62,78 @@ public class Demo {
             System.out.print("~> Nhap lua chon: ");
             switch (Integer.parseInt(Config.sc.nextLine())) {
                 case 1 -> {
-                   
+                   switch (Integer.parseInt(Config.sc.nextLine())) {
+                       case 1->{ 
+                            quanLyNhanVien.themNhanVien(quanLyNhanVien.nhapNhanVien());
+                            System.out.println("Nhap thanh cong");
+                       }
+                       case 2->{
+                           quanLyNhanVien.hienThi();
+                           System.out.print("Nhap ma nhan vien can xoa:");
+                           String maNV = Config.sc.nextLine();
+                           quanLyNhanVien.xoaNhanVien(quanLyNhanVien.timKiem(maNV).get(0));
+                           System.out.println("Xoa thanh cong");
+                       }
+                       case 3->{
+                           ///hamtinh luong dau anhtuan
+                           quanLyNhanVien.BangLuongNV();
+                           System.out.println();
+                       }
+                       case 4->{
+                           quanLyNhanVien.hienThi();
+                       }
+                       case 5->{
+                           System.out.print("[1]Tim kiem nhan vien theo ho ten\n[2]Tim kiem nhan vien theo ngay sinh\n[3]Tim kiem nhan vien theo phong ban"+
+                                   "\nTim kiem nhan vien theo do tuoi");
+                           switch (Integer.parseInt(Config.sc.nextLine())) {
+                               case 1->{
+                                   System.out.print("Nhap ten nhan vien can tim:");
+                                   String hoTen  = Config.sc.nextLine();
+                                   if(quanLyNhanVien.timKiem(hoTen) == null)
+                                       System.out.println("Khong tim thay ten nhan vien");
+                                   else
+                                       quanLyNhanVien.timKiem(hoTen).stream().forEach(nv -> System.out.println(nv));
+                               }
+                               case 2->{
+                                   System.out.print("Nhap ngay sinh nhan vien can tim:");
+                                   Date ngaySinh = Config.f.parse(Config.sc.nextLine());
+                                   if(quanLyNhanVien.timKiem(ngaySinh)== null)
+                                       System.out.println("Khong tim thay ten nhan vien");
+                                   else
+                                       quanLyNhanVien.timKiem(ngaySinh).stream().forEach(nv -> System.out.println(nv));
+                               }
+                               case 3->{
+                                   System.out.print("Nhap phong ban cua nhan vien can tim:");
+                                   String phongBan = Config.sc.nextLine().toLowerCase();
+                                        if(quanLyNhanVien.timKiem(quanLyPhongBan, phongBan) == null)
+                                             System.out.println("Khong tim thay ten nhan vien");
+                                        else
+                                        quanLyNhanVien.timKiem(quanLyPhongBan, phongBan).forEach(System.out :: println); 
+                               }
+                               case 4->/// search theo tuoi
+                               {
+                                   System.out.print("Nhap phong ban cua nhan vien can tim:");
+                                   
+                               }
+                           }
+                       }
+                           case 6->{
+                               System.out.print("Nhap ma nhan vien can hien thi danh sach than nhan:");
+                               String maNV = Config.sc.nextLine();
+                               if(quanLyNhanVien.timKiem(maNV) == null)
+                                       System.out.println("Khong tim thay ten nhan vien");
+                                else
+                                       quanLyNhanVien.timKiem(maNV).get(0).hienThiTatCaThanNhan();
+                       }
+                           case 7->{
+                               System.out.print("Nhap ma nhan vien can hien thi danh sach du an:");
+                               String maNV = Config.sc.nextLine();
+                               if(quanLyNhanVien.timKiem(maNV) == null)
+                                       System.out.println("Khong tim thay ten nhan vien");
+                                else
+                                       quanLyNhanVien.timKiem(maNV).get(0).hienThiDuAnThamGia();
+                           }
+                   }   
                 }
                 case 2 -> {
                     
