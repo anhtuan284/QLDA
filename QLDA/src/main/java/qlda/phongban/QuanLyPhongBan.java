@@ -17,7 +17,7 @@ public class QuanLyPhongBan {
         return new PhongBan(tenPB);
     }
 
-    public boolean isTonTai(PhongBan pb) {
+    public boolean isTonTaiPB(PhongBan pb) {
         return this.dsPB.contains(pb);
     }
     public void hienThi() {
@@ -26,18 +26,18 @@ public class QuanLyPhongBan {
 
     public void themPB(PhongBan... pbs) {
         for (PhongBan pb : pbs)
-            if (!isTonTai(pb))
+            if (!isTonTaiPB(pb))
                 this.dsPB.addAll(Arrays.asList(pb));
     }
 
     public void xoaPB(PhongBan... pbs) {
         for (PhongBan pb : pbs)
-            if (isTonTai(pb))
+            if (isTonTaiPB(pb))
                 this.dsPB.remove(pb);
     }
 
     public List<PhongBan> timKiem(String kw) {
-        return this.dsPB.stream().filter(pb -> pb.getTenPB().contains(kw)).collect(Collectors.toList());
+        return this.dsPB.stream().filter(pb -> pb.getTenPB().equalsIgnoreCase(kw)).collect(Collectors.toList());
     }
        
     // ============================== Getter Setter =====================================

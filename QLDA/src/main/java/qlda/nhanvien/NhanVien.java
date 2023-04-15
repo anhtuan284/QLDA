@@ -15,16 +15,17 @@ import qlda.phongban.PhongBan;
 import qlda.thannhan.ThanNhan;
 
 public abstract class NhanVien {
-    protected String maNV;
-    protected String hoTen;
-    protected Date ngaySinh;
-    protected String email;
-    protected String gioiTinh;
+    private String maNV;
+    private String hoTen;
+    private Date ngaySinh;
+    private String email;
+    private String gioiTinh;
     
-    protected List<DuAn> dsDA = new ArrayList<>();
-    protected List<ThanNhan> dsTN = new ArrayList<>();
-    protected PhongBan phongBan;
-    protected static final double LUONG_CO_BAN = 1000;
+    private List<DuAn> dsDA = new ArrayList<>();
+    private List<ThanNhan> dsTN = new ArrayList<>();
+    private PhongBan phongBan;
+    private static final double LUONG_CO_BAN = 1000;
+    private static final int DU_AN_TOI_DA = 3;
     private static int nNV = 0;
     {
         this.setMaNV(String.format("NV%03d", ++nNV));
@@ -66,9 +67,8 @@ public abstract class NhanVien {
     // tham số đầu vào của addAll chỉ chấp nhận kiểu Collection nên phải dùng Array.asList()
     public void themDA(DuAn... da) {
         for (DuAn duAn: da) 
-            if (!isCoDuAn(duAn))
+            if (!isCoDuAn(duAn) && dsDA.size() < DU_AN_TOI_DA)
                 dsDA.add(duAn);
-//        dsDA.addAll(Arrays.asList(da));
     }
     
     public void xoaDA(DuAn da) {
@@ -76,7 +76,10 @@ public abstract class NhanVien {
     }
     
     public void hienThiDuAnThamGia() {
-        dsDA.forEach(System.out :: println);
+        if (dsDA.size() == 0)
+            System.out.println("Chua tham gia du an nao!");
+        else
+            dsDA.forEach(System.out :: println);
     }
     
     public boolean isCoTN(ThanNhan thanNhan) {

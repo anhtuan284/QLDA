@@ -22,7 +22,7 @@ public class NhanVienQuanLy extends NhanVien {
 
     @Override
     public double layPhuCap() {
-        return LUONG_CO_BAN * layHeSo();
+        return 0;
     }
     
 }

@@ -30,27 +30,24 @@ public class QuanLyNhanVien {
         String email = Config.sc.nextLine();
         System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
         switch(Integer.parseInt(Config.sc.nextLine())) {
-            case 1 -> new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email);
-            case 2 -> {
+            case 1:
+                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email);
+            case 2:
                 System.out.print("Nhap ngay nham chuc: ");
                 String ngayNC = Config.sc.nextLine();
                 return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, ngayNC);
-            }
-            case 3 -> {
+            case 3:
                 System.out.print("Luong OT: ");
                 double luongOT = Double.parseDouble(Config.sc.nextLine());
                 return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, luongOT);
-            }
-            case 4 -> {
+            case 4:
                 System.out.print("Bonus: ");
                 double bonus = Double.parseDouble(Config.sc.nextLine());
                 return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, bonus);
-            }
-            case 5 -> {
+            case 5:
                 System.out.print("So loi phat hien: ");
                 int nError = Integer.parseInt(Config.sc.nextLine());
                 return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, nError);
-            }
         }
         return null;
     }
@@ -62,18 +59,15 @@ public class QuanLyNhanVien {
 
     public void xoaNhanVien(NhanVien... nvs) {
         for (NhanVien nv: nvs)
-            if (!isTonTaiNV(nv))
+            if (isTonTaiNV(nv))
                 dsNV.remove(nv);
     }
 
     public void hienThi() {
+        System.out.printf("%-7s%-20s%-12s%-5s%s\n", "Ma NV", "Ho Ten", "Ngay Sinh", "GT", "Email");
         this.dsNV.stream().forEach(System.out :: println);
     }
-//    public void tinhLuongCacNhanVien() {
-//        this.dsNV.stream().forEach(n -> {
-//            n.setLuong(n.tinhLuong());
-//        });
-//    }
+
     public void BangLuongNV() {
         this.dsNV.stream().forEach(n -> {
             System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getHoTen().toUpperCase(), n.tinhLuong());
@@ -81,7 +75,7 @@ public class QuanLyNhanVien {
     }
     
     public List<NhanVien> timKiem(String kw) {
-        return this.dsNV.stream().filter(n -> n.getHoTen().contains(kw) || n.getMaNV().contains(kw))
+        return this.dsNV.stream().filter(n -> n.getHoTen().trim().equalsIgnoreCase(kw) || n.getMaNV().equalsIgnoreCase(kw))
                 .collect(Collectors.toList());
     }
 

@@ -17,6 +17,8 @@ public class DuAn {
     private Date thoiDiemKetThuc;
     private double tongKinhPhi;
     
+    private static final int NHAN_VIEN_TOI_DA = 10;
+    private static final int NHAN_VIEN_TOI_THIEU = 5;
     private NhanVien chuNhiem;
     private List<NhanVien> dsNVThamGia = new ArrayList<>();
     private static int nDA = 0;
@@ -56,13 +58,13 @@ public class DuAn {
     
     public void themNV(NhanVien... n) {
         for (NhanVien nv: n) 
-            if (!isCoNV(nv))
+            if (!isCoNV(nv) && dsNVThamGia.size() < NHAN_VIEN_TOI_DA)
                 dsNVThamGia.add(nv);
     }
     
     public void xoaNV(NhanVien... n) {
         for (NhanVien nv: n)
-            if (isCoNV(nv))
+            if (isCoNV(nv) && dsNVThamGia.size() > NHAN_VIEN_TOI_THIEU)
                 this.dsNVThamGia.remove(nv);  
     }
 

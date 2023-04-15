@@ -37,13 +37,14 @@ public class Config {
     public static void menuQLDA() {
         System.out.println("==================== Quan Ly Du An ====================");
         System.out.println("| [1]: Nhap Du An");
-        System.out.println("| [2]: Them Du An");
-        System.out.println("| [3]: Xoa Du An");
+        System.out.println("| [2]: Xoa Du An");
+        System.out.println("| [3]: Sua Du An");
         System.out.println("| [4]: Hien danh sach Nhan Vien cua Du An");
         System.out.println("| [5]: Tim kiem Du An");
         System.out.println("| [6]: Sap xep theo tong kinh phi");
         System.out.println("| [7]: Gan Chu Nhiem Du An");
         System.out.println("| [8]: Gan Nhan Vien tham gia Du An");
+        System.out.println("| [9]: Hien thi danh sach Du An hien tai");
         System.out.println("| [0]: Thoat ra MENU Chinh");
         System.out.println("============================================================");
     }

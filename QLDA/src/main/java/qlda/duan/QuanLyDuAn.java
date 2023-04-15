@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import qlda.config.Config;
+import qlda.nhanvien.NhanVien;
 import qlda.nhanvien.QuanLyNhanVien;
 
 public class QuanLyDuAn{
@@ -42,11 +43,10 @@ public class QuanLyDuAn{
     
     public void suaDA(DuAn da) throws ParseException {
         System.out.println("Thong tin can sua: \n[1]: Ten Du An\n[2]: Thoi Diem Bat Dau\n[3]: Thoi Diem Ket Thuc\n[4]: Tong Kinh Phi");
-        Config.sc.nextLine();
         switch (Integer.parseInt(Config.sc.nextLine())) {
             case 1 -> {
                 System.out.print("Ten du an: ");
-                da.setMaDA(Config.sc.nextLine());
+                da.setTenDA(Config.sc.nextLine());
             }
             case 2 -> {
                 System.out.print("Thoi gian bat dau: ");
@@ -75,7 +75,7 @@ public class QuanLyDuAn{
 
 
     public List<DuAn> timKiem(String tuKhoa) {
-        return this.dsDA.stream().filter(d -> d.getTenDA().contains(tuKhoa) || d.getMaDA().contains(tuKhoa)).
+        return this.dsDA.stream().filter(d -> d.getTenDA().equalsIgnoreCase(tuKhoa) || d.getMaDA().equalsIgnoreCase(tuKhoa)).
             collect(Collectors.toList());
     }
 
@@ -87,7 +87,10 @@ public class QuanLyDuAn{
         return this.timKiem(maDA).get(0).themCN(qlnv.timKiem(maNV).get(0));
     }
     public void ganNhanVien(QuanLyNhanVien qlnv, String maDA, String maNV) {
-        this.timKiem(maDA).get(0).themNV(qlnv.timKiem(maNV).get(0));
+        NhanVien nv = qlnv.timKiem(maNV).get(0);
+        DuAn da = timKiem(maDA).get(0);
+        da.themNV(nv);
+        nv.themDA(da);
     }
     // ================================= Getter Setter ===================================
     public List<DuAn> getDanhSachDuAn() {
