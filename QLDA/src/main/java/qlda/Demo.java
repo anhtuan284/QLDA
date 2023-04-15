@@ -192,6 +192,7 @@ public class Demo {
                             if(kq == null)
                                 System.out.println("Khong tim thay ten nhan vien");
                             else {
+                               System.out.printf("%-7s%-20s%-16s%-18s%-13s%s\n", "Ma DA", "Ten DA", "Ngay BD", "Ngay KT", "Tong KP", "Chu Nhiem");
                                kq.hienThiDuAnThamGia();
                             }
                         }
