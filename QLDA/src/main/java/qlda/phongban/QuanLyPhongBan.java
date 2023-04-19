@@ -37,7 +37,9 @@ public class QuanLyPhongBan {
     }
 
     public List<PhongBan> timKiem(String kw) {
-        return this.dsPB.stream().filter(pb -> pb.getTenPB().equalsIgnoreCase(kw)).collect(Collectors.toList());
+        return this.dsPB.stream()
+                .filter(pb -> pb.getTenPB().equalsIgnoreCase(kw))
+                .collect(Collectors.toList());
     }
        
     // ============================== Getter Setter =====================================

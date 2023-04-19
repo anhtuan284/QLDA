@@ -6,8 +6,8 @@ import java.text.ParseException;
 public class KiemThuVien extends NhanVien{
     private double nError;
 
-    public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, double nError) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email);
+    public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double nError) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
         this.nError = nError;
     }
 

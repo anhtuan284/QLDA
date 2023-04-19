@@ -5,8 +5,8 @@ import java.text.ParseException;
 public class NhanVienThuong extends NhanVien{
 
     // ================================ METHOD ===================================
-    public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email);
+    public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
     }
 
     @Override

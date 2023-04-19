@@ -8,6 +8,7 @@ import qlda.duan.DuAn;
 import qlda.duan.QuanLyDuAn;
 import qlda.nhanvien.KiemThuVien;
 import qlda.nhanvien.LapTrinhVien;
+import qlda.nhanvien.LoaiNhanVien;
 import qlda.nhanvien.NhanVien;
 import qlda.nhanvien.NhanVienQuanLy;
 import qlda.nhanvien.NhanVienThuong;
@@ -23,11 +24,11 @@ public class Demo {
         QuanLyDuAn quanLyDuAn = new QuanLyDuAn();
         QuanLyPhongBan quanLyPhongBan = new QuanLyPhongBan();
         
-        NhanVien nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@",  20);
-        NhanVien nv2 = new KiemThuVien("Nguyen haha","20/5/2003", "Nam", "huutu1098@gmail.com", 39);
-        NhanVien nv3 = new NhanVienQuanLy("Nguyen Huu Tinh", "20/1/2001", "Nam", "tinh@gmail.com", "20/12/2022");
-        NhanVien nv4 = new NhanVienThuong("Nguyen huu Tu","20/3/2003", "Nam", "huutu1098@gmail.com");
-        NhanVien nv5 = new ThietKeVien("Nguyen huu Tu","20/3/2003", "Nam", "huutu1098@gmail.com", 50);
+        NhanVien nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@", LoaiNhanVien.LAP_TRINH_VIEN, 20);
+        NhanVien nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nam", "huutu1098@gmail.com",LoaiNhanVien.KIEM_THU_VIEN, 39);
+        NhanVien nv3 = new NhanVienQuanLy("Nguyen Huu Tinh", "20/1/2001", "Nam", "tinh@gmail.com", LoaiNhanVien.NHAN_VIEN_QUAN_LY, "20/12/2022");
+        NhanVien nv4 = new NhanVienThuong("Nguyen Huu Tu","20/3/2003", "Nam", "huutu1098@gmail.com", LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv5 = new ThietKeVien("Nguyen Huu Tu","20/3/2003", "Nam", "huutu1098@gmail.com",LoaiNhanVien.THIET_KE_VIEN, 50);
         PhongBan pb1 = new PhongBan("Phong Nhan Su");
         PhongBan pb2 = new PhongBan("Phong Cong Nghe Thong Tin");
         PhongBan pb3 = new PhongBan("Phong Ke Toan");
@@ -37,10 +38,10 @@ public class Demo {
         DuAn da2 = new DuAn("Xay Nha", "2/2/2022", "3/3/2023", 1300.1);
         DuAn da3 = new DuAn("Ok", "2/2/2022", "3/3/2023", 1560.1);
         DuAn da4 = new DuAn("Riverside", "2/2/2022", "3/3/2023", 3200.1);
-        DuAn da5 = new DuAn("Cong trình thanh nien", "2/2/2022", "3/3/2023", 2200.1);
-        ThanNhan tn1 = new ThanNhan("Thao Van", "9/11/2003", "Nu", "Nguoi yeu cua Huu Tu");
-        ThanNhan tn2 = new ThanNhan("Quoc Huy", "3/2/2022", "Nam", "friend");
-        ThanNhan tn3 = new ThanNhan("An Tien", "22/2/2022", "Nam", "super");
+        DuAn da5 = new DuAn("Cong trình TN", "2/2/2022", "3/3/2023", 2200.1);
+        ThanNhan tn1 = new ThanNhan("Thao Van", "9/11/2003", "Nu", "Me");
+        ThanNhan tn2 = new ThanNhan("Quoc Huy", "3/2/2022", "Nam", "Chu");
+        ThanNhan tn3 = new ThanNhan("An Tien", "22/2/2022", "Nam", "Ong noi");
         quanLyNhanVien.themNhanVien(nv1, nv2, nv3, nv4, nv5);
         quanLyDuAn.themDA(da1, da2, da3, da4, da5);
         quanLyPhongBan.themPB(pb1, pb2, pb3);
@@ -85,6 +86,7 @@ public class Demo {
                                     pb = quanLyPhongBan.nhapPhongBan();
                                     quanLyPhongBan.themPB(pb);
                                     pb.themNV(nv);
+                                    nv.setPhongBan(pb);
                                 }
                                 case 2 -> {
                                     quanLyPhongBan.hienThi();
@@ -92,8 +94,10 @@ public class Demo {
                                     List<PhongBan>kq = quanLyPhongBan.timKiem(Config.sc.nextLine());
                                     if (kq.isEmpty())
                                         System.out.println("Khong tim thay phong ban");
-                                    else
+                                    else{
                                         kq.get(0).themNV(nv);
+                                        nv.setPhongBan(pb);
+                                    }
                                 }
                                 default -> System.out.println("Nhap Sai lua chon:");
                             }
@@ -143,7 +147,7 @@ public class Demo {
                                     if(kq.isEmpty())
                                         System.out.println("Khong tim thay ten nhan vien");
                                     else {
-                                        System.out.printf("%-7s%-20s%-12s%-5s%s", "Ma NV", "Ho Ten", "Ngay Sinh", "GT", "Email");
+                                        System.out.printf("%-7s%-20s%-12s%-5s%-20s%s\n", "Ma NV", "Ho Ten", "Ngay Sinh", "GT", "Loai NV", "Email");
                                         quanLyNhanVien.timKiem(hoTen).stream().forEach(nv -> System.out.println(nv));
                                     }
                                 }

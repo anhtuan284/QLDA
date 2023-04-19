@@ -8,11 +8,6 @@ public class Config {
     public static SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyy");
     
     
-   // ================ CONST ======================
-    public static final double soDuAnToiDa = 3;
-    public static final double soNhanVienToiDa = 10;
-    public static final double soNhanVienToiThieu = 5;
-    
     public static void menu() {
         System.out.println("========================= MENU =============================");
         System.out.println("| [1]: Quan ly nhan vien                                   |");
@@ -35,7 +30,7 @@ public class Config {
     }
     
     public static void menuQLDA() {
-        System.out.println("==================== Quan Ly Du An ====================");
+        System.out.println("==================== Quan Ly Du An =========================");
         System.out.println("| [1]: Nhap Du An");
         System.out.println("| [2]: Xoa Du An");
         System.out.println("| [3]: Sua Du An");

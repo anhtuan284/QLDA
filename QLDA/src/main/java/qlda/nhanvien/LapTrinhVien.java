@@ -8,8 +8,8 @@ public class LapTrinhVien extends NhanVien{
 
     // ========================================== METHODS =============================================
    
-    public LapTrinhVien(String hoTen, String ngaySinh, String gioiTinh, String email, double luongOT) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email);
+    public LapTrinhVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double luongOT) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
         this.luongOT = luongOT;
     }
     

@@ -31,23 +31,23 @@ public class QuanLyNhanVien {
         System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
         switch(Integer.parseInt(Config.sc.nextLine())) {
             case 1:
-                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email);
+                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.NHAN_VIEN_THUONG);
             case 2:
                 System.out.print("Nhap ngay nham chuc: ");
                 String ngayNC = Config.sc.nextLine();
-                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, ngayNC);
+                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email,LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC);
             case 3:
                 System.out.print("Luong OT: ");
                 double luongOT = Double.parseDouble(Config.sc.nextLine());
-                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, luongOT);
+                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.LAP_TRINH_VIEN, luongOT);
             case 4:
                 System.out.print("Bonus: ");
                 double bonus = Double.parseDouble(Config.sc.nextLine());
-                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, bonus);
+                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.THIET_KE_VIEN, bonus);
             case 5:
                 System.out.print("So loi phat hien: ");
                 int nError = Integer.parseInt(Config.sc.nextLine());
-                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, nError);
+                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.KIEM_THU_VIEN, nError);
         }
         return null;
     }
@@ -64,7 +64,7 @@ public class QuanLyNhanVien {
     }
 
     public void hienThi() {
-        System.out.printf("%-7s%-20s%-12s%-5s%s\n", "Ma NV", "Ho Ten", "Ngay Sinh", "GT", "Email");
+        System.out.printf("%-7s%-20s%-12s%-5s%-20s%s\n", "Ma NV", "Ho Ten", "Ngay Sinh", "GT", "LoaiNV", "Email");
         this.dsNV.stream().forEach(System.out :: println);
     }
 
@@ -75,17 +75,21 @@ public class QuanLyNhanVien {
     }
     
     public List<NhanVien> timKiem(String kw) {
-        return this.dsNV.stream().filter(n -> n.getHoTen().trim().equalsIgnoreCase(kw) || n.getMaNV().equalsIgnoreCase(kw))
+        return this.dsNV.stream()
+                .filter(n -> n.getHoTen().trim().equalsIgnoreCase(kw) || n.getMaNV().equalsIgnoreCase(kw))
                 .collect(Collectors.toList());
     }
 
     public List<NhanVien> timKiem(Date ngay) {
-        return this.dsNV.stream().filter(n -> n.getNgaySinh().equals(ngay)).collect(Collectors.toList());
+        return this.dsNV.stream()
+                .filter(n -> n.getNgaySinh().equals(ngay))
+                .collect(Collectors.toList());
     }
 
     public List<NhanVien> timKiem(int dau, int cuoi) {
-        return this.dsNV.stream().filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi).
-                collect(Collectors.toList());
+        return this.dsNV.stream()
+                .filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi)
+                .collect(Collectors.toList());
     }
     public List<NhanVien> timKiem(QuanLyPhongBan qlpb, String maPB) {
         return qlpb.timKiem(maPB).get(0).getDsNVTrucThuoc();

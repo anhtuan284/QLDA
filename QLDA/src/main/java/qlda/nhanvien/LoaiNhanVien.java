@@ -5,31 +5,31 @@ public enum LoaiNhanVien {
     NHAN_VIEN_THUONG(1, 0) {
         @Override
         public String getTypeName() {
-            return "Nhan Vien Thường";
+            return "Nhan Vien Thuong";
         }
     },
     NHAN_VIEN_QUAN_LY(1.2, 0) {
         @Override
         public String getTypeName() {
-            return "Nhân Viên Quản Lý";
+            return "Nhan Vien Quan Ly";
         }
     },
     LAP_TRINH_VIEN(1.5, 4000) {
         @Override
         public String getTypeName() {
-            return "Lập Trình Viên";
+            return "Lap Trinh Vien";
         }
     },
     THIET_KE_VIEN(1.6, 2000) {
         @Override
         public String getTypeName() {
-            return "Thiết Kế Viên";
+            return "Thiet Ke Vien";
         }
     },
     KIEM_THU_VIEN(1.7, 20 * 200) {
         @Override
         public String getTypeName() {
-            return "Kiểm Thử Viên";
+            return "Kiem Thu Vien";
         }
     };
     private double heSoLuong;

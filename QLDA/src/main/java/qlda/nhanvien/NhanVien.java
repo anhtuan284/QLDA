@@ -20,6 +20,7 @@ public abstract class NhanVien {
     private Date ngaySinh;
     private String email;
     private String gioiTinh;
+    private LoaiNhanVien loaiNV;
     
     private List<DuAn> dsDA = new ArrayList<>();
     private List<ThanNhan> dsTN = new ArrayList<>();
@@ -32,19 +33,28 @@ public abstract class NhanVien {
     }
     
     
-    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email) throws ParseException {
+    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loai) throws ParseException {
         this.hoTen = hoTen;
         this.ngaySinh = Config.f.parse(ngaySinh);
         this.gioiTinh = gioiTinh;
         this.email = email;
+        this.loaiNV = loai;
         this.dsDA = new ArrayList<>();
+    }
+
+    public NhanVien(String hoTen, Date ngaySinh, String email, String gioiTinh, PhongBan phongBan) {
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.phongBan = phongBan;
     }
     
     // ====================================== METHOD =======================================
 
     @Override
     public String toString() {
-        return String.format("%-7s%-20s%-12s%-5s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), this.getEmail());
+        return String.format("%-7s%-20s%-12s%-5s%-20s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), loaiNV.getTypeName(), this.getEmail());
     }
     
     public abstract double layHeSo();
@@ -105,17 +115,19 @@ public abstract class NhanVien {
         if (obj == this) return true;
         if (!(obj instanceof NhanVien)) return false;
         NhanVien temp = (NhanVien) obj;
-        return maNV.equals(temp.maNV);
+        return maNV.equals(temp.maNV) || ( hoTen.equals(temp.hoTen) && ngaySinh.equals(temp.ngaySinh));
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.maNV);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.maNV);
+        hash = 89 * hash + Objects.hashCode(this.hoTen);
+        hash = 89 * hash + Objects.hashCode(this.ngaySinh);
         return hash;
     }
-    
-    
+
+
     
     // ================================= GETTER SETTER ====================================
  
@@ -189,5 +201,13 @@ public abstract class NhanVien {
 
     public void setPhongBan(PhongBan phongBan) {
         this.phongBan = phongBan;
+    }
+
+    public LoaiNhanVien getLoaiNV() {
+        return loaiNV;
+    }
+
+    public void setLoaiNV(LoaiNhanVien loaiNV) {
+        this.loaiNV = loaiNV;
     }
 }

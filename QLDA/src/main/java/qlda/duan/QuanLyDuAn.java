@@ -75,12 +75,15 @@ public class QuanLyDuAn{
 
 
     public List<DuAn> timKiem(String tuKhoa) {
-        return this.dsDA.stream().filter(d -> d.getTenDA().equalsIgnoreCase(tuKhoa) || d.getMaDA().equalsIgnoreCase(tuKhoa)).
-            collect(Collectors.toList());
+        return this.dsDA.stream()
+                .filter(d -> d.getTenDA().equalsIgnoreCase(tuKhoa) || d.getMaDA().equalsIgnoreCase(tuKhoa))
+                .collect(Collectors.toList());
     }
 
     public List<DuAn> timKiem(Date ngay) {
-        return this.dsDA.stream().filter(d -> d.getThoiDiemBatDau().equals(ngay)).collect(Collectors.toList());
+        return this.dsDA.stream()
+                .filter(d -> d.getThoiDiemBatDau().equals(ngay))
+                .collect(Collectors.toList());
     }
     
     public boolean ganChuNhiem(QuanLyNhanVien qlnv, String maDA, String maNV) {

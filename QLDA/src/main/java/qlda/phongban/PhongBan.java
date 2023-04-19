@@ -36,7 +36,7 @@ public class PhongBan {
 
     @Override
     public String toString() {
-        return String.format("============================= %-27s ============================", this.tenPB);
+        return String.format("%-27s", this.tenPB);
     }
 
     @Override
