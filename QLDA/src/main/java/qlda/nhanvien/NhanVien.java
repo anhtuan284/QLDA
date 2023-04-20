@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import qlda.config.Config;
 import qlda.duan.DuAn;
 import qlda.phongban.PhongBan;
+import qlda.phongban.QuanLyPhongBan;
 import qlda.thannhan.ThanNhan;
 
 public abstract class NhanVien {
@@ -33,13 +34,15 @@ public abstract class NhanVien {
     }
     
     
-    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loai) throws ParseException {
+    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loai) throws ParseException {
         this.hoTen = hoTen;
         this.ngaySinh = Config.f.parse(ngaySinh);
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.loaiNV = loai;
+        this.phongBan = pb;
         this.dsDA = new ArrayList<>();
+        themNVVaoPhongBan(pb);
     }
 
     public NhanVien(String hoTen, Date ngaySinh, String email, String gioiTinh, PhongBan phongBan) {
@@ -77,12 +80,15 @@ public abstract class NhanVien {
     // tham số đầu vào của addAll chỉ chấp nhận kiểu Collection nên phải dùng Array.asList()
     public void themDA(DuAn... da) {
         for (DuAn duAn: da) 
-            if (!isCoDuAn(duAn) && dsDA.size() < DU_AN_TOI_DA)
+            if (!isCoDuAn(duAn) && dsDA.size() < DU_AN_TOI_DA) {
                 dsDA.add(duAn);
+                duAn.themNV(this);
+            }
     }
     
     public void xoaDA(DuAn da) {
-        dsDA.remove(da);
+        if(isCoDuAn(da))
+            dsDA.remove(da);
     }
     
     public void hienThiDuAnThamGia() {
@@ -110,6 +116,9 @@ public abstract class NhanVien {
         dsTN.forEach(System.out :: println);
     }
 
+    public final void themNVVaoPhongBan(PhongBan pb) {
+        pb.themNV(this);
+    }
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;

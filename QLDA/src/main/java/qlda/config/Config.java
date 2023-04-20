@@ -12,6 +12,7 @@ public class Config {
         System.out.println("========================= MENU =============================");
         System.out.println("| [1]: Quan ly nhan vien                                   |");
         System.out.println("| [2]: Quan ly du an                                       |");
+        System.out.println("| [3]: Quan ly phong ban                                   |");
         System.out.println("| [0]: Thoat                                               |");
         System.out.println("============================================================");
     }
@@ -40,6 +41,14 @@ public class Config {
         System.out.println("| [7]: Gan Chu Nhiem Du An");
         System.out.println("| [8]: Gan Nhan Vien tham gia Du An");
         System.out.println("| [9]: Hien thi danh sach Du An hien tai");
+        System.out.println("| [0]: Thoat ra MENU Chinh");
+        System.out.println("============================================================");
+    }
+    
+        public static void menuQLPB() {
+        System.out.println("==================== Quan Ly Phong Ban =========================");
+        System.out.println("| [1]: Them Phong Ban");
+        System.out.println("| [2]: Xem Danh Sach Nhan Vien cua Phong Ban");
         System.out.println("| [0]: Thoat ra MENU Chinh");
         System.out.println("============================================================");
     }

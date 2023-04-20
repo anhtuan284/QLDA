@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import qlda.config.Config;
+import qlda.phongban.PhongBan;
 import qlda.phongban.QuanLyPhongBan;
 
 
@@ -19,7 +20,7 @@ public class QuanLyNhanVien {
         return this.dsNV.contains(nv);
     }
     
-    public NhanVien nhapNhanVien() throws ParseException {
+    public NhanVien nhapNhanVien(QuanLyPhongBan qlpb) throws ParseException {
         System.out.print("\nHo ten: ");
         String hoTen = Config.sc.nextLine();
         System.out.print("Ngay sinh (dd/MM/yyyy): ");
@@ -28,26 +29,29 @@ public class QuanLyNhanVien {
         String gioiTinh = Config.sc.nextLine();
         System.out.print("Email: ");
         String email = Config.sc.nextLine();
+        System.out.print("Ten Phong Ban Can Them: ");
+        String kw = Config.sc.nextLine();
+        PhongBan pb = qlpb.timKiem(kw).get(0);
         System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
         switch(Integer.parseInt(Config.sc.nextLine())) {
             case 1:
-                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.NHAN_VIEN_THUONG);
+                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_THUONG);
             case 2:
                 System.out.print("Nhap ngay nham chuc: ");
                 String ngayNC = Config.sc.nextLine();
-                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email,LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC);
+                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC);
             case 3:
                 System.out.print("Luong OT: ");
                 double luongOT = Double.parseDouble(Config.sc.nextLine());
-                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.LAP_TRINH_VIEN, luongOT);
+                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.LAP_TRINH_VIEN, luongOT);
             case 4:
                 System.out.print("Bonus: ");
                 double bonus = Double.parseDouble(Config.sc.nextLine());
-                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.THIET_KE_VIEN, bonus);
+                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.THIET_KE_VIEN, bonus);
             case 5:
                 System.out.print("So loi phat hien: ");
                 int nError = Integer.parseInt(Config.sc.nextLine());
-                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, LoaiNhanVien.KIEM_THU_VIEN, nError);
+                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.KIEM_THU_VIEN, nError);
         }
         return null;
     }

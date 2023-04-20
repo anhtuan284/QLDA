@@ -1,6 +1,7 @@
 package qlda.nhanvien;
 
 import java.text.ParseException;
+import qlda.phongban.PhongBan;
 
 
 public class LapTrinhVien extends NhanVien{
@@ -8,8 +9,8 @@ public class LapTrinhVien extends NhanVien{
 
     // ========================================== METHODS =============================================
    
-    public LapTrinhVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double luongOT) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+    public LapTrinhVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, double luongOT) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.luongOT = luongOT;
     }
     

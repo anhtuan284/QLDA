@@ -1,12 +1,13 @@
 package qlda.nhanvien;
 
 import java.text.ParseException;
+import qlda.phongban.PhongBan;
 
 public class NhanVienThuong extends NhanVien{
 
     // ================================ METHOD ===================================
-    public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+    public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
     }
 
     @Override

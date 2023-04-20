@@ -37,8 +37,12 @@ public class QuanLyDuAn{
                 this.dsDA.add(d);
     }
     
-    public void xoaDuAn(DuAn... d) {
-        this.dsDA.removeAll(Arrays.asList(d));
+    public void xoaDuAn(String maDA) {
+        DuAn temp = timKiem(maDA).get(0);
+        temp.getDsNVThamGia().forEach(nv -> {
+            nv.xoaDA(temp);
+        });
+        dsDA.remove(temp);
     }
     
     public void suaDA(DuAn da) throws ParseException {

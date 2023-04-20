@@ -30,12 +30,6 @@ public class QuanLyPhongBan {
                 this.dsPB.addAll(Arrays.asList(pb));
     }
 
-    public void xoaPB(PhongBan... pbs) {
-        for (PhongBan pb : pbs)
-            if (isTonTaiPB(pb))
-                this.dsPB.remove(pb);
-    }
-
     public List<PhongBan> timKiem(String kw) {
         return this.dsPB.stream()
                 .filter(pb -> pb.getTenPB().equalsIgnoreCase(kw))

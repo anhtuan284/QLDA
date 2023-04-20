@@ -1,13 +1,14 @@
 package qlda.nhanvien;
 
 import java.text.ParseException;
+import qlda.phongban.PhongBan;
 
 
 public class KiemThuVien extends NhanVien{
     private double nError;
 
-    public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double nError) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+    public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, double nError) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.nError = nError;
     }
 

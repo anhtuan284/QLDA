@@ -1,14 +1,15 @@
 package qlda.nhanvien;
 
 import java.text.ParseException;
+import qlda.phongban.PhongBan;
 
 
 
 public class ThietKeVien extends NhanVien{
     private double bonus;
 
-    public ThietKeVien(String hoTen, String ngaySinh, String gioiTinh, String email, LoaiNhanVien loaiNV, double bonus) throws ParseException {
-        super(hoTen, ngaySinh, gioiTinh, email, loaiNV);
+    public ThietKeVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, double bonus) throws ParseException {
+        super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.bonus = bonus;
     }
 
