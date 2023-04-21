@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import qlda.config.Config;
 import qlda.duan.DuAn;
@@ -34,15 +33,15 @@ public abstract class NhanVien {
     }
     
     
-    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loai) throws ParseException {
+    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan phongBan, LoaiNhanVien loai) throws ParseException {
         this.hoTen = hoTen;
         this.ngaySinh = Config.f.parse(ngaySinh);
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.loaiNV = loai;
-        this.phongBan = pb;
+        this.phongBan = phongBan;
         this.dsDA = new ArrayList<>();
-        themNVVaoPhongBan(pb);
+        themNVVaoPhongBan(phongBan);
     }
 
     public NhanVien(String hoTen, Date ngaySinh, String email, String gioiTinh, PhongBan phongBan) {
@@ -57,7 +56,7 @@ public abstract class NhanVien {
 
     @Override
     public String toString() {
-        return String.format("%-7s%-20s%-12s%-5s%-20s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), loaiNV.getTypeName(), this.getEmail());
+        return String.format("%-7s%-20s%-12s%-5s%-20s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), this.loaiNV, this.getEmail());
     }
     
     public abstract double layHeSo();
@@ -74,16 +73,20 @@ public abstract class NhanVien {
     }
     
     public boolean isCoDuAn(DuAn da) {
-        return this.dsDA.contains(da); // contains su dung equal & hashCode kiem tra 
+        return this.dsDA.contains(da);
+    }
+    public boolean isFullDA() {
+        return dsDA.size() >= DU_AN_TOI_DA;
     }
     
-    // tham số đầu vào của addAll chỉ chấp nhận kiểu Collection nên phải dùng Array.asList()
-    public void themDA(DuAn... da) {
+    public boolean themDA(DuAn... da) {
         for (DuAn duAn: da) 
             if (!isCoDuAn(duAn) && dsDA.size() < DU_AN_TOI_DA) {
                 dsDA.add(duAn);
                 duAn.themNV(this);
+                return true;
             }
+        return false;
     }
     
     public void xoaDA(DuAn da) {
@@ -92,7 +95,7 @@ public abstract class NhanVien {
     }
     
     public void hienThiDuAnThamGia() {
-        if (dsDA.size() == 0)
+        if (dsDA.isEmpty())
             System.out.println("Chua tham gia du an nao!");
         else
             dsDA.forEach(System.out :: println);

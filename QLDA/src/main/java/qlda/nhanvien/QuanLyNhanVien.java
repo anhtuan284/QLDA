@@ -1,10 +1,12 @@
 package qlda.nhanvien;
 
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import qlda.config.Config;
 import qlda.phongban.PhongBan;
@@ -13,8 +15,12 @@ import qlda.phongban.QuanLyPhongBan;
 
 public class QuanLyNhanVien {
     private List<NhanVien> dsNV = new ArrayList<>();
-
-    public QuanLyNhanVien() {}
+    private static final QuanLyNhanVien qlnv;
+    
+    static {
+        qlnv = new QuanLyNhanVien();
+    }
+    private QuanLyNhanVien() {}
     
     public boolean isTonTaiNV(NhanVien nv) {
         return this.dsNV.contains(nv);
@@ -30,8 +36,7 @@ public class QuanLyNhanVien {
         System.out.print("Email: ");
         String email = Config.sc.nextLine();
         System.out.print("Ten Phong Ban Can Them: ");
-        String kw = Config.sc.nextLine();
-        PhongBan pb = qlpb.timKiem(kw).get(0);
+        PhongBan pb = qlpb.timKiem(Config.sc.nextLine()).get(0);
         System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
         switch(Integer.parseInt(Config.sc.nextLine())) {
             case 1:
@@ -39,7 +44,8 @@ public class QuanLyNhanVien {
             case 2:
                 System.out.print("Nhap ngay nham chuc: ");
                 String ngayNC = Config.sc.nextLine();
-                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC);
+                System.out.println("Nhap ten phong ban Quan Ly: ");
+                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC, qlpb.timKiem(Config.sc.nextLine()));
             case 3:
                 System.out.print("Luong OT: ");
                 double luongOT = Double.parseDouble(Config.sc.nextLine());
@@ -55,14 +61,14 @@ public class QuanLyNhanVien {
         }
         return null;
     }
-    public void themNhanVien(NhanVien... nvs) {
-        for (NhanVien nv: nvs)
+    public void themNhanVien(NhanVien... arrNV) {
+        for (NhanVien nv: arrNV)
             if (!isTonTaiNV(nv))
                 dsNV.add(nv);
     }
 
-    public void xoaNhanVien(NhanVien... nvs) {
-        for (NhanVien nv: nvs)
+    public void xoaNhanVien(NhanVien... arrNV) {
+        for (NhanVien nv: arrNV)
             if (isTonTaiNV(nv))
                 dsNV.remove(nv);
     }
@@ -114,6 +120,10 @@ public class QuanLyNhanVien {
 
     public void setDsNV(List<NhanVien> danhSachNhanVien) {
         this.dsNV = danhSachNhanVien;
+    }
+
+    public static QuanLyNhanVien getQlnv() {
+        return qlnv;
     }
 }
 

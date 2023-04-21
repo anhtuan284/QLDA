@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import qlda.config.Config;
 import qlda.phongban.PhongBan;
+import qlda.phongban.QuanLyPhongBan;
 
 public class NhanVienQuanLy extends NhanVien {
     private Date ngayNhamChuc;
@@ -14,9 +15,10 @@ public class NhanVienQuanLy extends NhanVien {
     private static final int PHONG_BAN_QUAN_LY_TOI_DA = 2;
     //================== METHODS =====================
 
-    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, String ngayNhamChuc) throws ParseException {
+    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, String ngayNhamChuc, List<PhongBan> dsPBQL) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.ngayNhamChuc = Config.f.parse(ngayNhamChuc);
+        this.dsPB = dsPBQL;
     }
     
     public boolean isCoPB(PhongBan pb) {
@@ -24,8 +26,10 @@ public class NhanVienQuanLy extends NhanVien {
     }
     
     public void themPBQL(PhongBan pb) {
-        if (!isCoPB(pb) && dsPB.size() < PHONG_BAN_QUAN_LY_TOI_DA)
+        if (!isCoPB(pb) && dsPB.size() < PHONG_BAN_QUAN_LY_TOI_DA) {
+            pb.setNvQL(this);
             dsPB.add(pb);
+        }
     }
     @Override
     public double layHeSo() {

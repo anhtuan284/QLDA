@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 import qlda.config.Config;
 
 public class QuanLyPhongBan {
+    private static QuanLyPhongBan qlpb;
     List<PhongBan> dsPB = new ArrayList<>();
 
-    public QuanLyPhongBan() {}
+    static {
+        qlpb = new QuanLyPhongBan();
+    }
+    private QuanLyPhongBan() {}
     
     public PhongBan nhapPhongBan() {
         System.out.print("Ten phong ban: ");
@@ -43,5 +47,9 @@ public class QuanLyPhongBan {
 
     public void setDanhSachPhongBan(List<PhongBan> danhSachPhongBan) {
         this.dsPB = danhSachPhongBan;
+    }
+
+    public static QuanLyPhongBan getQlpb() {
+        return qlpb;
     }
 }

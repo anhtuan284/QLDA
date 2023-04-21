@@ -4,31 +4,32 @@ package qlda.nhanvien;
 public enum LoaiNhanVien {
     NHAN_VIEN_THUONG(1, 0) {
         @Override
-        public String getTypeName() {
+        public String toString() {
             return "Nhan Vien Thuong";
         }
+        
     },
     NHAN_VIEN_QUAN_LY(1.2, 0) {
         @Override
-        public String getTypeName() {
+        public String toString() {
             return "Nhan Vien Quan Ly";
         }
     },
     LAP_TRINH_VIEN(1.5, 4000) {
         @Override
-        public String getTypeName() {
+        public String toString() {
             return "Lap Trinh Vien";
         }
     },
     THIET_KE_VIEN(1.6, 2000) {
         @Override
-        public String getTypeName() {
+        public String toString() {
             return "Thiet Ke Vien";
         }
     },
     KIEM_THU_VIEN(1.7, 20 * 200) {
         @Override
-        public String getTypeName() {
+        public String toString() {
             return "Kiem Thu Vien";
         }
     };
@@ -43,7 +44,6 @@ public enum LoaiNhanVien {
     public double tinhLuongPhu(double luong){
         return luong;
     }
-    public abstract String getTypeName();
 
     public double getHeSoLuong() {
         return heSoLuong;

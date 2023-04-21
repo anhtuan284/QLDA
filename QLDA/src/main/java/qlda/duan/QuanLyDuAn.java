@@ -12,10 +12,15 @@ import qlda.nhanvien.NhanVien;
 import qlda.nhanvien.QuanLyNhanVien;
 
 public class QuanLyDuAn{
+    private static QuanLyDuAn qlda;
     private List<DuAn> dsDA = new ArrayList<>();
 
-    public QuanLyDuAn() {}
-    public DuAn nhapDA() throws ParseException
+    static {
+        qlda = new QuanLyDuAn();
+    }
+    private QuanLyDuAn() {}
+    
+    public DuAn nhapDA(QuanLyDuAn qlda, QuanLyNhanVien qlnv) throws ParseException
     {
         System.out.print("\nTen du an: ");
         String tenDuAn = Config.sc.nextLine();
@@ -26,7 +31,11 @@ public class QuanLyDuAn{
         System.out.print("Tong kinh phi dau tu: ");
         double tongKP = Config.sc.nextDouble();
         Config.sc.nextLine();
-        return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP);
+        List<DuAn> kq = qlda.timKiem(tenDuAn);
+        if (kq.isEmpty())
+            return new DuAn(tenDuAn, ngayBD, ngayDKKT, tongKP, qlnv);
+        System.out.println("DA CO DU AN NAY !!!");
+        return kq.get(0);
     }
     public boolean isTonTaiDA(DuAn da) {
         return this.dsDA.contains(da);
@@ -93,11 +102,12 @@ public class QuanLyDuAn{
     public boolean ganChuNhiem(QuanLyNhanVien qlnv, String maDA, String maNV) {
         return this.timKiem(maDA).get(0).themCN(qlnv.timKiem(maNV).get(0));
     }
-    public void ganNhanVien(QuanLyNhanVien qlnv, String maDA, String maNV) {
-        NhanVien nv = qlnv.timKiem(maNV).get(0);
-        DuAn da = timKiem(maDA).get(0);
+    
+    public boolean ganNhanVien(DuAn da, NhanVien nv) {
+        if (nv.isFullDA())
+            return false;
         da.themNV(nv);
-        nv.themDA(da);
+        return true;
     }
     // ================================= Getter Setter ===================================
     public List<DuAn> getDanhSachDuAn() {
@@ -105,5 +115,9 @@ public class QuanLyDuAn{
     }
     public void setDanhSachDuAn(List<DuAn> danhSachDuAn) {
         this.dsDA = danhSachDuAn;
+    }
+
+    public static QuanLyDuAn getQlda() {
+        return qlda;
     }
 }

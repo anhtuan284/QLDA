@@ -35,12 +35,13 @@ public class Config {
         System.out.println("| [1]: Nhap Du An");
         System.out.println("| [2]: Xoa Du An");
         System.out.println("| [3]: Sua Du An");
-        System.out.println("| [4]: Hien danh sach Nhan Vien cua Du An");
+        System.out.println("| [4]: Hien thi NHAN VIEN tham gia");
         System.out.println("| [5]: Tim kiem Du An");
         System.out.println("| [6]: Sap xep theo tong kinh phi");
         System.out.println("| [7]: Gan Chu Nhiem Du An");
         System.out.println("| [8]: Gan Nhan Vien tham gia Du An");
         System.out.println("| [9]: Hien thi danh sach Du An hien tai");
+        System.out.println("| [10]: Xoa nhan vien khoi du an");
         System.out.println("| [0]: Thoat ra MENU Chinh");
         System.out.println("============================================================");
     }

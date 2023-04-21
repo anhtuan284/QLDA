@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import qlda.config.Config;
 import qlda.nhanvien.NhanVien;
+import qlda.nhanvien.QuanLyNhanVien;
 
 
 public class DuAn {
@@ -20,19 +21,32 @@ public class DuAn {
     private static final int NHAN_VIEN_TOI_DA = 10;
     private static final int NHAN_VIEN_TOI_THIEU = 5;
     private NhanVien chuNhiem;
-    private List<NhanVien> dsNVThamGia = new ArrayList<>();
+    private List<NhanVien> dsNV = new ArrayList<>();
     private static int nDA = 0;
     {
         this.maDA = String.format("DA%03d", ++nDA);
     }
 
     public DuAn() {}
-    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi) throws ParseException {
+    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, QuanLyNhanVien qlnv) throws ParseException {
         this.tenDA = tenDA;
         this.thoiDiemBatDau = Config.f.parse(thoiDiemBatDau);
         this.thoiDiemKetThuc = Config.f.parse(thoiDiemKetThuc);
         this.tongKinhPhi = tongKinhPhi;
+        do { themCN(qlnv); } while (!isCoCN());
+        do { System.out.println("CHUA DU NHAN VIEN !!!");themNV(qlnv); } while (!isDuNV());
     }
+    
+    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, NhanVien chuNhiem, NhanVien... arrNV) throws ParseException {
+        this.tenDA = tenDA;
+        this.thoiDiemBatDau = Config.f.parse(thoiDiemBatDau);
+        this.thoiDiemKetThuc = Config.f.parse(thoiDiemKetThuc);
+        this.tongKinhPhi = tongKinhPhi;
+        this.chuNhiem = chuNhiem;
+        themNV(arrNV);
+        
+    }
+    
     
     // ============================== METHODS ===========================
 
@@ -45,27 +59,46 @@ public class DuAn {
         System.out.printf("===================== DU AN : %s ============================\n", this.tenDA);
         System.out.printf("+ Chu nhiem du an:\n%s\n", isCoCN() ? this.chuNhiem : "Chua co chu nhiem");
         System.out.println("- Danh sach nhan vien:");
-        if (this.dsNVThamGia.isEmpty()) 
+        if (this.dsNV.isEmpty()) 
             System.out.println("Chua co nhan vien tham gia");
         else 
-            this.dsNVThamGia.forEach(System.out :: println);
+            this.dsNV.forEach(System.out :: println);
         System.out.printf("=====================================================================\n", this.tenDA);
     }
     
     public boolean isCoNV(NhanVien nv) {
-        return this.dsNVThamGia.contains(nv);
+        return this.dsNV.contains(nv);
+    }
+    
+    public final boolean isDuNV() {
+        return dsNV.size() >= NHAN_VIEN_TOI_THIEU && dsNV.size() <= NHAN_VIEN_TOI_DA; 
     }
     
     public void themNV(NhanVien... n) {
         for (NhanVien nv: n) 
-            if (!isCoNV(nv) && dsNVThamGia.size() < NHAN_VIEN_TOI_DA)
-                dsNVThamGia.add(nv);
+            if (!isCoNV(nv) && dsNV.size() < NHAN_VIEN_TOI_DA) {
+                dsNV.add(nv);
+                nv.themDA(this);
+            }
+    }
+    
+    public void themNV(QuanLyNhanVien qlnv) {
+        System.out.print("Ma Nhan Vien Can Them: ");
+        List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
+        if (nv.isEmpty())
+            System.out.println("Khong Tim Thay Nhan Vien !! ");
+        else
+            themNV(nv.get(0));
     }
     
     public void xoaNV(NhanVien... n) {
         for (NhanVien nv: n)
-            if (isCoNV(nv) && dsNVThamGia.size() > NHAN_VIEN_TOI_THIEU)
-                this.dsNVThamGia.remove(nv);  
+            if (isCoNV(nv) && dsNV.size() > NHAN_VIEN_TOI_THIEU) {
+                System.out.println("XOA THANH CONG");
+                this.dsNV.remove(nv);  
+            }
+            else 
+                System.out.println(isCoNV(nv) ? "TOI THIEU 5 NHAN VIEN !!" : "NHAN VIEN NAY CHUA THAM GIA !!");
     }
 
     public boolean isCoCN() {
@@ -77,6 +110,15 @@ public class DuAn {
         this.chuNhiem = nv;
         return true;
     }
+    public void themCN(QuanLyNhanVien qlnv) {
+        System.out.print("Ma Nhan Vien Chu Nhiem: ");
+        List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
+        if (nv.isEmpty())
+            System.out.println("Khong Tim Thay Nhan Vien !! ");
+        else
+            themCN(nv.get(0));
+    }
+    
     public void xoaCN() {
         this.chuNhiem = null;
     }
@@ -148,6 +190,6 @@ public class DuAn {
     }
 
     public List<NhanVien> getDsNVThamGia() {
-        return dsNVThamGia;
+        return dsNV;
     }
 }

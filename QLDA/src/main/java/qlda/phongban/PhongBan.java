@@ -3,14 +3,14 @@ package qlda.phongban;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import qlda.nhanvien.NhanVien;
 
 public class PhongBan {
     private String tenPB;
-
+    
+    private NhanVien nvQL;
     private List<NhanVien> dsNVTrucThuoc = new ArrayList<>();
-
+    
     public PhongBan(String tenPB) {
         this.tenPB = tenPB;
     }
@@ -36,7 +36,7 @@ public class PhongBan {
 
     @Override
     public String toString() {
-        return String.format("%-27s", this.tenPB);
+        return String.format(this.tenPB);
     }
 
     @Override
@@ -68,5 +68,13 @@ public class PhongBan {
     
     public void setTenPB(String tenPB) {
         this.tenPB = tenPB;
+    }
+
+    public NhanVien getNvQL() {
+        return nvQL;
+    }
+
+    public void setNvQL(NhanVien nvQL) {
+        this.nvQL = nvQL;
     }
 }
