@@ -34,7 +34,7 @@ public class DuAn {
         this.thoiDiemKetThuc = Config.f.parse(thoiDiemKetThuc);
         this.tongKinhPhi = tongKinhPhi;
         do { themCN(qlnv); } while (!isCoCN());
-        do { System.out.println("CHUA DU NHAN VIEN !!!");themNV(qlnv); } while (!isDuNV());
+        do { System.out.printf("DU AN CHUA DU NHAN VIEN !!! Thieu %d Nhan Vien\n", NHAN_VIEN_TOI_THIEU - this.dsNV.size());themNV(qlnv); } while (!isDuNV());
     }
     
     public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, NhanVien chuNhiem, NhanVien... arrNV) throws ParseException {
@@ -87,8 +87,12 @@ public class DuAn {
         List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
         if (nv.isEmpty())
             System.out.println("Khong Tim Thay Nhan Vien !! ");
-        else
-            themNV(nv.get(0));
+        else {
+            if(!nv.get(0).isFullDA())
+                themNV(nv.get(0));
+            else
+                System.out.println("Nhan Vien nay da tham gia du DU AN!");
+        }
     }
     
     public void xoaNV(NhanVien... n) {
@@ -114,7 +118,7 @@ public class DuAn {
         System.out.print("Ma Nhan Vien Chu Nhiem: ");
         List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
         if (nv.isEmpty())
-            System.out.println("Khong Tim Thay Nhan Vien !! ");
+            System.out.println("KHONG TIM THAY NV !! ");
         else
             themCN(nv.get(0));
     }

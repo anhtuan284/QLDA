@@ -33,22 +33,24 @@ public class Demo {
         
         
         NhanVien nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@", pb1, LoaiNhanVien.NHAN_VIEN_THUONG, 20);
-        NhanVien nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nam", "huutu1098@gmail.com", pb2, LoaiNhanVien.KIEM_THU_VIEN, 39);
+        NhanVien nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nu", "huutu1098@gmail.com", pb2, LoaiNhanVien.KIEM_THU_VIEN, 39);
         NhanVien nv3 = new ThietKeVien("Nguyen Huu Tinh", "20/1/2006", "Nam", "tinh@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_QUAN_LY, 999);
         NhanVien nv4 = new NhanVienThuong("Nguyen Huu Tu","20/3/2008", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv5 = new ThietKeVien("Nguyen Huu Tu","20/3/2003", "Nam", "huutu1098@gmail.com", pb5, LoaiNhanVien.THIET_KE_VIEN, 50);
-        NhanVien nv6 = new NhanVienThuong("Tran Duc An","20/3/2008", "Nam", "huutu1098@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv5 = new ThietKeVien("Nguyen Huu Tu","20/3/2003", "Nam", "tuj293@gmail.com", pb5, LoaiNhanVien.THIET_KE_VIEN, 50);
+        NhanVien nv6 = new NhanVienThuong("Tran Duc An","20/3/2008", "Nam", "an200@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
         NhanVien nv7 = new NhanVienThuong("Nguyen Manh","20/3/2008", "Nam", "huutu1098@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv8 = new NhanVienThuong("An Vy","22/4/2008", "Nam", "huutu1098@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv8 = new NhanVienThuong("An Vy","22/4/2008", "NU", "huutu1098@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
         NhanVien nv9 = new NhanVienThuong("Hong Loc","12/3/2004", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv10 = new NhanVienThuong("Huy Vo","10/3/2001", "Nam", "huutu1098@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv10 = new NhanVienThuong("Huy Vo","10/3/2001", "Nam", "huyvo@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv11 = new NhanVienThuong("Huy Dinh","30/3/2001", "Nam", "dinhuy@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
+        NhanVien nv12 = new NhanVienThuong("Tuan Tran","1/3/2001", "Nam", "huu98@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
         
         
-        DuAn da1 = new DuAn("Pha nha", "2/2/2020", "21/3/2023", 12120.44, nv5, nv2, nv3, nv6, nv8, nv5, nv7);
-        DuAn da2 = new DuAn("Cai Tao Nha", "12/2/2012", "16/5/2012", 13020.11, nv1, nv8, nv6, nv4, nv5, nv1);
-        DuAn da3 = new DuAn("Flow Chart", "2/12/2015", "3/3/2023", 15630.42, nv2, nv1, nv6, nv8, nv9, nv5);
-        DuAn da4 = new DuAn("Riverside", "6/5/2012", "3/3/2023", 32100, nv3, nv1, nv7, nv3, nv4, nv5);
-        DuAn da5 = new DuAn("Cong trình TN", "15/2/2020", "2/12/2023", 22002, nv4, nv1, nv8, nv6, nv7, nv5);
+        DuAn da1 = new DuAn("Pha nha", "2/2/2020", "21/3/2023", 12120.44, nv5, nv2, nv3, nv6, nv8, nv1, nv7);
+        DuAn da2 = new DuAn("Cai Tao Nha", "12/2/2012", "16/5/2012", 13020.11, nv1, nv8, nv6, nv4, nv5, nv2);
+        DuAn da3 = new DuAn("Flow Chart", "2/12/2015", "3/3/2023", 15630.42, nv2, nv1, nv6, nv8, nv9, nv10);
+        DuAn da4 = new DuAn("Riverside", "6/5/2012", "3/3/2023", 32100, nv3, nv1, nv7, nv9, nv4, nv12); 
+        DuAn da5 = new DuAn("Cong trình TN", "15/2/2020", "2/12/2023", 22002, nv4, nv10, nv11, nv3, nv7, nv5);
         
         
         ThanNhan tn1 = new ThanNhan("Thao Van", "9/11/1979", "Nu", "Me");
@@ -57,7 +59,7 @@ public class Demo {
         ThanNhan tn4 = new ThanNhan("Ngoc Thuy", "12/4/1958", "Nu", "Ba noi");
         ThanNhan tn5 = new ThanNhan("Quoc Hung", "12/4/1951", "Nam", "Ong noi");
         
-        quanLyNhanVien.themNhanVien(nv1, nv2, nv3, nv4, nv5, nv6, nv7, nv8, nv9, nv10);
+        quanLyNhanVien.themNhanVien(nv1, nv2, nv3, nv4, nv5, nv6, nv7, nv8, nv9, nv10, nv11, nv12);
         quanLyDuAn.themDA(da1, da2, da3, da4, da5);
         quanLyPhongBan.themPB(pb1, pb2, pb3);
 
@@ -79,11 +81,9 @@ public class Demo {
             Config.menu();
             System.out.print("~> Nhap lua chon: ");
             int option;
-            try {
-                option = Integer.parseInt(Config.sc.nextLine());
-            }
+            try { option = Integer.parseInt(Config.sc.nextLine());}
             catch (NumberFormatException ex) {
-                System.out.println("INPUT INVALID!");
+                System.out.println("INVALID INPUT!");
                 continue;
             }
             switch (option) {
@@ -160,7 +160,7 @@ public class Demo {
                                     if(nv.isEmpty())
                                          System.out.println("Khong tim thay ten nhan vien");
                                     else
-                                    quanLyNhanVien.timKiem(quanLyPhongBan, phongBan).forEach(System.out :: println); 
+                                        quanLyNhanVien.timKiem(quanLyPhongBan, phongBan).forEach(System.out :: println); 
                                 }
                                 case 4 -> {
                                     System.out.print("Nhap khoang do tuoi\n + Min: ");
@@ -187,14 +187,9 @@ public class Demo {
                         }
                         case 7->{
                             System.out.print("Nhap Ten nhan vien can hien thi danh sach du an:");
-                            String tenNV = Config.sc.nextLine();
-                            NhanVien kq = quanLyNhanVien.timKiem(tenNV).get(0);
-                            if(kq == null)
-                                System.out.println("Khong tim thay ten nhan vien");
-                            else {
-                               System.out.printf("%-7s%-20s%-16s%-18s%-13s%s\n", "Ma DA", "Ten DA", "Ngay BD", "Ngay KT", "Tong KP", "Chu Nhiem");
-                               kq.hienThiDuAnThamGia();
-                            }
+                            String kw = Config.sc.nextLine();
+                            System.out.printf("%-7s%-20s%-16s%-18s%-13s%s\n", "Ma DA", "Ten DA", "Ngay BD", "Ngay KT", "Tong KP", "Chu Nhiem");
+                            quanLyNhanVien.hienThiDSDA(kw);
                         }
                    }   
                 }
@@ -215,8 +210,13 @@ public class Demo {
                             do {
                                 quanLyDuAn.hienThi();
                                 System.out.print("~> MA DU AN CAN XOA: ");
-                                String maDA = Config.sc.nextLine();
-                                quanLyDuAn.xoaDuAn(maDA);
+                                List<DuAn> kq = quanLyDuAn.timKiem(Config.sc.nextLine());
+                                if (!kq.isEmpty()) {
+                                    quanLyDuAn.xoaDuAn(kq.get(0));
+                                    System.out.println("XOA THANH CONG!");
+                                }
+                                else
+                                    System.out.println("Khong tim thay du an !!");
                                 System.out.print("Tiep tuc ? \n[1] Co \n[2] Khong\n~> Lua chon: ");
                             } while (Integer.parseInt(Config.sc.nextLine()) == 1);
                         }
@@ -235,8 +235,12 @@ public class Demo {
                         }
                         case 4 -> {
                             System.out.print("~> Nhap Ma DA can xem DSNV: ");
-                            String maDA = Config.sc.nextLine().toUpperCase();
-                            quanLyDuAn.timKiem(maDA).get(0).hienThiDSNV();
+                            String maDA = Config.sc.nextLine();
+                            List<DuAn> kq = quanLyDuAn.timKiem(maDA);
+                            if (kq.isEmpty())
+                                System.out.println("Khong tim thay Du An!!");
+                            else 
+                                kq.get(0).hienThiDSNV();
                         }
                         case 5 -> {
                             System.out.print("[1] Tim kiem theo Ten DU AN\n[2] Tim kiem theo Ngay Bat Dau\n~> Lua chon:");

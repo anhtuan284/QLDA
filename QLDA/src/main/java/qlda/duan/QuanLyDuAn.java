@@ -12,7 +12,7 @@ import qlda.nhanvien.NhanVien;
 import qlda.nhanvien.QuanLyNhanVien;
 
 public class QuanLyDuAn{
-    private static QuanLyDuAn qlda;
+    private static final QuanLyDuAn qlda;
     private List<DuAn> dsDA = new ArrayList<>();
 
     static {
@@ -22,7 +22,7 @@ public class QuanLyDuAn{
     
     public DuAn nhapDA(QuanLyDuAn qlda, QuanLyNhanVien qlnv) throws ParseException
     {
-        System.out.print("\nTen du an: ");
+        System.out.print("Ten du an: ");
         String tenDuAn = Config.sc.nextLine();
         System.out.print("Ngay bat dau du an: ");
         String ngayBD = Config.sc.nextLine();
@@ -52,6 +52,12 @@ public class QuanLyDuAn{
             nv.xoaDA(temp);
         });
         dsDA.remove(temp);
+    }
+    
+    public void xoaDuAn(DuAn... da) {
+        for (DuAn d: da)
+            if (isTonTaiDA(d))
+                this.dsDA.remove(d);
     }
     
     public void suaDA(DuAn da) throws ParseException {

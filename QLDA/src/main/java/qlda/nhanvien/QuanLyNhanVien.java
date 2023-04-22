@@ -110,7 +110,11 @@ public class QuanLyNhanVien {
     }
     
     public void hienThiDSDA(String kw) {
-        this.timKiem(kw).get(0).hienThiDuAnThamGia();
+        List<NhanVien> nv = this.timKiem(kw);
+        if(nv.isEmpty())
+            System.out.println("Khong tim thay Nhan Vien");
+        else
+            nv.get(0).hienThiDuAnThamGia();
     }
     
     // =================================== getter setter ===================================

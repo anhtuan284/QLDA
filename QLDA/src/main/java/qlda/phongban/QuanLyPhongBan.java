@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import qlda.config.Config;
 
 public class QuanLyPhongBan {
-    private static QuanLyPhongBan qlpb;
+    private static final QuanLyPhongBan qlpb;
     List<PhongBan> dsPB = new ArrayList<>();
 
     static {
