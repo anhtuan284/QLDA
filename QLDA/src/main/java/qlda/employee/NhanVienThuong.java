@@ -1,9 +1,9 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.text.ParseException;
 import qlda.phongban.PhongBan;
 
-public class NhanVienThuong extends NhanVien{
+public class NhanVienThuong extends Employee{
 
     // ================================ METHOD ===================================
     public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV) throws ParseException {

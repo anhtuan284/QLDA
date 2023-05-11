@@ -1,4 +1,4 @@
-package qlda.duan;
+package qlda.project;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import qlda.config.Config;
-import qlda.nhanvien.NhanVien;
-import qlda.nhanvien.QuanLyNhanVien;
+import qlda.employee.Employee;
+import qlda.employee.QuanLyNhanVien;
 
 
 public class DuAn {
@@ -20,8 +20,8 @@ public class DuAn {
     
     private static final int NHAN_VIEN_TOI_DA = 10;
     private static final int NHAN_VIEN_TOI_THIEU = 5;
-    private NhanVien chuNhiem;
-    private List<NhanVien> dsNV = new ArrayList<>();
+    private Employee chuNhiem;
+    private List<Employee> dsNV = new ArrayList<>();
     private static int nDA = 0;
     {
         this.maDA = String.format("DA%03d", ++nDA);
@@ -37,7 +37,7 @@ public class DuAn {
         do { System.out.printf("DU AN CHUA DU NHAN VIEN !!! Thieu %d Nhan Vien\n", NHAN_VIEN_TOI_THIEU - this.dsNV.size());themNV(qlnv); } while (!isDuNV());
     }
     
-    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, NhanVien chuNhiem, NhanVien... arrNV) throws ParseException {
+    public DuAn(String tenDA, String thoiDiemBatDau, String thoiDiemKetThuc, double tongKinhPhi, Employee chuNhiem, Employee... arrNV) throws ParseException {
         this.tenDA = tenDA;
         this.thoiDiemBatDau = Config.f.parse(thoiDiemBatDau);
         this.thoiDiemKetThuc = Config.f.parse(thoiDiemKetThuc);
@@ -52,7 +52,7 @@ public class DuAn {
 
     @Override
     public String toString() {
-        return String.format("%-7s%-20s%-16s%-18s%-13.1f%s", this.maDA, this.tenDA, Config.f.format(this.thoiDiemBatDau),Config.f.format(this.thoiDiemKetThuc), this.tongKinhPhi, this.chuNhiem != null ? this.chuNhiem.getMaNV(): "null");
+        return String.format("%-7s%-20s%-16s%-18s%-13.1f%s", this.maDA, this.tenDA, Config.f.format(this.thoiDiemBatDau),Config.f.format(this.thoiDiemKetThuc), this.tongKinhPhi, this.chuNhiem != null ? this.chuNhiem.getEmID(): "null");
     }
 
     public void hienThiDSNV() {
@@ -66,7 +66,7 @@ public class DuAn {
         System.out.printf("=====================================================================\n", this.tenDA);
     }
     
-    public boolean isCoNV(NhanVien nv) {
+    public boolean isCoNV(Employee nv) {
         return this.dsNV.contains(nv);
     }
     
@@ -74,29 +74,29 @@ public class DuAn {
         return dsNV.size() >= NHAN_VIEN_TOI_THIEU && dsNV.size() <= NHAN_VIEN_TOI_DA; 
     }
     
-    public void themNV(NhanVien... n) {
-        for (NhanVien nv: n) 
+    public void themNV(Employee... n) {
+        for (Employee nv: n) 
             if (!isCoNV(nv) && dsNV.size() < NHAN_VIEN_TOI_DA) {
                 dsNV.add(nv);
-                nv.themDA(this);
+                nv.addProject(this);
             }
     }
     
     public void themNV(QuanLyNhanVien qlnv) {
         System.out.print("Ma Nhan Vien Can Them: ");
-        List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
+        List<Employee> nv = qlnv.timKiem(Config.sc.nextLine());
         if (nv.isEmpty())
             System.out.println("Khong Tim Thay Nhan Vien !! ");
         else {
-            if(!nv.get(0).isFullDA())
+            if(!nv.get(0).isFullProject())
                 themNV(nv.get(0));
             else
                 System.out.println("Nhan Vien nay da tham gia du DU AN!");
         }
     }
     
-    public void xoaNV(NhanVien... n) {
-        for (NhanVien nv: n)
+    public void xoaNV(Employee... n) {
+        for (Employee nv: n)
             if (isCoNV(nv) && dsNV.size() > NHAN_VIEN_TOI_THIEU) {
                 System.out.println("XOA THANH CONG");
                 this.dsNV.remove(nv);  
@@ -108,7 +108,7 @@ public class DuAn {
     public boolean isCoCN() {
         return this.chuNhiem != null;
     }
-    public boolean themCN(NhanVien nv) {
+    public boolean themCN(Employee nv) {
         if (isCoCN())
             return false;
         this.chuNhiem = nv;
@@ -116,7 +116,7 @@ public class DuAn {
     }
     public void themCN(QuanLyNhanVien qlnv) {
         System.out.print("Ma Nhan Vien Chu Nhiem: ");
-        List<NhanVien> nv = qlnv.timKiem(Config.sc.nextLine());
+        List<Employee> nv = qlnv.timKiem(Config.sc.nextLine());
         if (nv.isEmpty())
             System.out.println("KHONG TIM THAY NV !! ");
         else
@@ -185,15 +185,15 @@ public class DuAn {
         this.tongKinhPhi = tongKinhPhi;
     }
 
-    public NhanVien getChuNhiem() {
+    public Employee getChuNhiem() {
         return chuNhiem;
     }
 
-    public void setChuNhiem(NhanVien chuNhiem) {
+    public void setChuNhiem(Employee chuNhiem) {
         this.chuNhiem = chuNhiem;
     }
 
-    public List<NhanVien> getDsNVThamGia() {
+    public List<Employee> getDsNVThamGia() {
         return dsNV;
     }
 }

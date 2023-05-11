@@ -1,4 +1,4 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -14,7 +14,7 @@ import qlda.phongban.QuanLyPhongBan;
 
 
 public class QuanLyNhanVien {
-    private List<NhanVien> dsNV = new ArrayList<>();
+    private List<Employee> dsNV = new ArrayList<>();
     private static final QuanLyNhanVien qlnv;
     
     static {
@@ -22,11 +22,11 @@ public class QuanLyNhanVien {
     }
     private QuanLyNhanVien() {}
     
-    public boolean isTonTaiNV(NhanVien nv) {
+    public boolean isTonTaiNV(Employee nv) {
         return this.dsNV.contains(nv);
     }
     
-    public NhanVien nhapNhanVien(QuanLyPhongBan qlpb) throws ParseException {
+    public Employee nhapNhanVien(QuanLyPhongBan qlpb) throws ParseException {
         System.out.print("\nHo ten: ");
         String hoTen = Config.sc.nextLine();
         System.out.print("Ngay sinh (dd/MM/yyyy): ");
@@ -53,7 +53,7 @@ public class QuanLyNhanVien {
             case 4:
                 System.out.print("Bonus: ");
                 double bonus = Double.parseDouble(Config.sc.nextLine());
-                return new ThietKeVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.THIET_KE_VIEN, bonus);
+                return new Designer(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.THIET_KE_VIEN, bonus);
             case 5:
                 System.out.print("So loi phat hien: ");
                 int nError = Integer.parseInt(Config.sc.nextLine());
@@ -61,14 +61,14 @@ public class QuanLyNhanVien {
         }
         return null;
     }
-    public void themNhanVien(NhanVien... arrNV) {
-        for (NhanVien nv: arrNV)
+    public void themNhanVien(Employee... arrNV) {
+        for (Employee nv: arrNV)
             if (!isTonTaiNV(nv))
                 dsNV.add(nv);
     }
 
-    public void xoaNhanVien(NhanVien... arrNV) {
-        for (NhanVien nv: arrNV)
+    public void xoaNhanVien(Employee... arrNV) {
+        for (Employee nv: arrNV)
             if (isTonTaiNV(nv))
                 dsNV.remove(nv);
     }
@@ -80,28 +80,28 @@ public class QuanLyNhanVien {
 
     public void BangLuongNV() {
         this.dsNV.stream().forEach(n -> {
-            System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getHoTen().toUpperCase(), n.tinhLuong());
+            System.out.printf("+ %-20s - Luong: %,.1f USD\n", n.getEmName().toUpperCase(), n.tinhLuong());
         });
     }
     
-    public List<NhanVien> timKiem(String kw) {
+    public List<Employee> timKiem(String kw) {
         return this.dsNV.stream()
-                .filter(n -> n.getHoTen().trim().equalsIgnoreCase(kw) || n.getMaNV().equalsIgnoreCase(kw))
+                .filter(n -> n.getEmName().trim().equalsIgnoreCase(kw) || n.getEmID().equalsIgnoreCase(kw))
                 .collect(Collectors.toList());
     }
 
-    public List<NhanVien> timKiem(Date ngay) {
+    public List<Employee> timKiem(Date ngay) {
         return this.dsNV.stream()
-                .filter(n -> n.getNgaySinh().equals(ngay))
+                .filter(n -> n.getEmDOB().equals(ngay))
                 .collect(Collectors.toList());
     }
 
-    public List<NhanVien> timKiem(int dau, int cuoi) {
+    public List<Employee> timKiem(int dau, int cuoi) {
         return this.dsNV.stream()
                 .filter(n -> n.tinhTuoi()>= dau && n.tinhTuoi()<= cuoi)
                 .collect(Collectors.toList());
     }
-    public List<NhanVien> timKiem(QuanLyPhongBan qlpb, String maPB) {
+    public List<Employee> timKiem(QuanLyPhongBan qlpb, String maPB) {
         return qlpb.timKiem(maPB).get(0).getDsNVTrucThuoc();
     }
     
@@ -110,7 +110,7 @@ public class QuanLyNhanVien {
     }
     
     public void hienThiDSDA(String kw) {
-        List<NhanVien> nv = this.timKiem(kw);
+        List<Employee> nv = this.timKiem(kw);
         if(nv.isEmpty())
             System.out.println("Khong tim thay Nhan Vien");
         else
@@ -118,11 +118,11 @@ public class QuanLyNhanVien {
     }
     
     // =================================== getter setter ===================================
-    public List<NhanVien> getDsNV() {
+    public List<Employee> getDsNV() {
         return dsNV;
     }
 
-    public void setDsNV(List<NhanVien> danhSachNhanVien) {
+    public void setDsNV(List<Employee> danhSachNhanVien) {
         this.dsNV = danhSachNhanVien;
     }
 

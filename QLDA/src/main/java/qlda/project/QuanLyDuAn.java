@@ -1,4 +1,4 @@
-package qlda.duan;
+package qlda.project;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import qlda.config.Config;
-import qlda.nhanvien.NhanVien;
-import qlda.nhanvien.QuanLyNhanVien;
+import qlda.employee.Employee;
+import qlda.employee.QuanLyNhanVien;
 
 public class QuanLyDuAn{
     private static final QuanLyDuAn qlda;
@@ -49,7 +49,7 @@ public class QuanLyDuAn{
     public void xoaDuAn(String maDA) {
         DuAn temp = timKiem(maDA).get(0);
         temp.getDsNVThamGia().forEach(nv -> {
-            nv.xoaDA(temp);
+            nv.rmProject(temp);
         });
         dsDA.remove(temp);
     }
@@ -109,8 +109,8 @@ public class QuanLyDuAn{
         return this.timKiem(maDA).get(0).themCN(qlnv.timKiem(maNV).get(0));
     }
     
-    public boolean ganNhanVien(DuAn da, NhanVien nv) {
-        if (nv.isFullDA())
+    public boolean ganNhanVien(DuAn da, Employee nv) {
+        if (nv.isFullProject())
             return false;
         da.themNV(nv);
         return true;

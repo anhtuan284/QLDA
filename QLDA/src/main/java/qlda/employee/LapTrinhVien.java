@@ -1,10 +1,10 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.text.ParseException;
 import qlda.phongban.PhongBan;
 
 
-public class LapTrinhVien extends NhanVien{
+public class LapTrinhVien extends Employee{
     private double luongOT;
 
     // ========================================== METHODS =============================================

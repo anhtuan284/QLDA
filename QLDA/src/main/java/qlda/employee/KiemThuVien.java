@@ -1,10 +1,10 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.text.ParseException;
 import qlda.phongban.PhongBan;
 
 
-public class KiemThuVien extends NhanVien{
+public class KiemThuVien extends Employee{
     private double nError;
 
     public KiemThuVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, double nError) throws ParseException {

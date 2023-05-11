@@ -4,16 +4,15 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import qlda.config.Config;
-import qlda.duan.DuAn;
-import qlda.duan.QuanLyDuAn;
-import qlda.nhanvien.KiemThuVien;
-import qlda.nhanvien.LapTrinhVien;
-import qlda.nhanvien.LoaiNhanVien;
-import qlda.nhanvien.NhanVien;
-import qlda.nhanvien.NhanVienQuanLy;
-import qlda.nhanvien.NhanVienThuong;
-import qlda.nhanvien.QuanLyNhanVien;
-import qlda.nhanvien.ThietKeVien;
+import qlda.project.DuAn;
+import qlda.project.QuanLyDuAn;
+import qlda.employee.KiemThuVien;
+import qlda.employee.LapTrinhVien;
+import qlda.employee.LoaiNhanVien;
+import qlda.employee.Employee;
+import qlda.employee.NhanVienThuong;
+import qlda.employee.QuanLyNhanVien;
+import qlda.employee.Designer;
 import qlda.phongban.PhongBan;
 import qlda.phongban.QuanLyPhongBan;
 import qlda.thannhan.ThanNhan;
@@ -32,18 +31,18 @@ public class Demo {
         PhongBan pb5 = new PhongBan("Phong Ke Kiem");
         
         
-        NhanVien nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@", pb1, LoaiNhanVien.NHAN_VIEN_THUONG, 20);
-        NhanVien nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nu", "huutu1098@gmail.com", pb2, LoaiNhanVien.KIEM_THU_VIEN, 39);
-        NhanVien nv3 = new ThietKeVien("Nguyen Huu Tinh", "20/1/2006", "Nam", "tinh@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_QUAN_LY, 999);
-        NhanVien nv4 = new NhanVienThuong("Nguyen Huu Tu","20/3/2008", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv5 = new ThietKeVien("Nguyen Huu Tu","20/3/2003", "Nam", "tuj293@gmail.com", pb5, LoaiNhanVien.THIET_KE_VIEN, 50);
-        NhanVien nv6 = new NhanVienThuong("Tran Duc An","20/3/2008", "Nam", "an200@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv7 = new NhanVienThuong("Nguyen Manh","20/3/2008", "Nam", "huutu1098@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv8 = new NhanVienThuong("An Vy","22/4/2008", "NU", "huutu1098@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv9 = new NhanVienThuong("Hong Loc","12/3/2004", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv10 = new NhanVienThuong("Huy Vo","10/3/2001", "Nam", "huyvo@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv11 = new NhanVienThuong("Huy Dinh","30/3/2001", "Nam", "dinhuy@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
-        NhanVien nv12 = new NhanVienThuong("Tuan Tran","1/3/2001", "Nam", "huu98@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@", pb1, LoaiNhanVien.NHAN_VIEN_THUONG, 20);
+        Employee nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nu", "huutu1098@gmail.com", pb2, LoaiNhanVien.KIEM_THU_VIEN, 39);
+        Employee nv3 = new Designer("Nguyen Huu Tinh", "20/1/2006", "Nam", "tinh@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_QUAN_LY, 999);
+        Employee nv4 = new NhanVienThuong("Nguyen Huu Tu","20/3/2008", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv5 = new Designer("Nguyen Huu Tu","20/3/2003", "Nam", "tuj293@gmail.com", pb5, LoaiNhanVien.THIET_KE_VIEN, 50);
+        Employee nv6 = new NhanVienThuong("Tran Duc An","20/3/2008", "Nam", "an200@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv7 = new NhanVienThuong("Nguyen Manh","20/3/2008", "Nam", "huutu1098@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv8 = new NhanVienThuong("An Vy","22/4/2008", "NU", "huutu1098@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv9 = new NhanVienThuong("Hong Loc","12/3/2004", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv10 = new NhanVienThuong("Huy Vo","10/3/2001", "Nam", "huyvo@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv11 = new NhanVienThuong("Huy Dinh","30/3/2001", "Nam", "dinhuy@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv12 = new NhanVienThuong("Tuan Tran","1/3/2001", "Nam", "huu98@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
         
         
         DuAn da1 = new DuAn("Pha nha", "2/2/2020", "21/3/2023", 12120.44, nv5, nv2, nv3, nv6, nv8, nv1, nv7);
@@ -75,7 +74,6 @@ public class Demo {
         nv4.themTN(tn3, tn2);
         nv5.themTN(tn4, tn3);
         
-        
         boolean isLoop = true;
         do {
             Config.menu();
@@ -93,7 +91,7 @@ public class Demo {
                     switch (Integer.parseInt(Config.sc.nextLine())) {
                         case 1->{ 
                             System.out.println("== > Nhap Thong tin NV:");
-                            NhanVien nv = quanLyNhanVien.nhapNhanVien(quanLyPhongBan);
+                            Employee nv = quanLyNhanVien.nhapNhanVien(quanLyPhongBan);
                             quanLyNhanVien.themNhanVien(nv);
                             System.out.print("+ Them Than Nhan ?\n [1] Co\n [2] Khong\n~> Lua chon: ");
                             switch (Integer.parseInt(Config.sc.nextLine())) {
@@ -137,7 +135,7 @@ public class Demo {
                                 case 1->{
                                     System.out.print("Nhap ten nhan vien can tim:");
                                     String hoTen  = Config.sc.nextLine();
-                                    List<NhanVien> kq = quanLyNhanVien.timKiem(hoTen);
+                                    List<Employee> kq = quanLyNhanVien.timKiem(hoTen);
                                     if(kq.isEmpty())
                                         System.out.println("Khong tim thay ten nhan vien");
                                     else {
@@ -156,7 +154,7 @@ public class Demo {
                                 case 3->{
                                     System.out.print("Nhap ten phong ban cua nhan vien can tim:");
                                     String phongBan = Config.sc.nextLine();
-                                    List<NhanVien> nv = quanLyNhanVien.timKiem(quanLyPhongBan, phongBan);
+                                    List<Employee> nv = quanLyNhanVien.timKiem(quanLyPhongBan, phongBan);
                                     if(nv.isEmpty())
                                          System.out.println("Khong tim thay ten nhan vien");
                                     else
@@ -167,12 +165,13 @@ public class Demo {
                                     int min = Integer.parseInt(Config.sc.nextLine());
                                     System.out.print("+ Max: ");
                                     int max = Integer.parseInt(Config.sc.nextLine());
-                                    List<NhanVien> kq = quanLyNhanVien.timKiem(min, max);
+                                    List<Employee> kq = quanLyNhanVien.timKiem(min, max);
                                     if(kq.isEmpty())
                                         System.out.println("Khong tim thay nhan vien");
                                     else
                                         kq.forEach(System.out :: println);
                                 }
+
                             }
                         }
                         case 6->{
@@ -310,12 +309,12 @@ public class Demo {
                                 kq.get(0).hienThiDSNV();
                                 do {
                                     System.out.print("~> Ma Nhan Vien Can Xoa: ");
-                                    List<NhanVien> nv = quanLyNhanVien.timKiem(Config.sc.nextLine());
+                                    List<Employee> nv = quanLyNhanVien.timKiem(Config.sc.nextLine());
                                     if (nv.isEmpty()) 
                                         System.out.println("NHAN VIEN KHONG TON TAI !!");
                                     else {
                                         kq.get(0).xoaNV(nv.get(0));
-                                        nv.get(0).xoaDA(kq.get(0));
+                                        nv.get(0).rmProject(kq.get(0));
                                     }
                                     System.out.print("Tiep tuc ? \n[1] Co \n[2] Khong\n~> Lua chon: ");
                                 } while (Integer.parseInt(Config.sc.nextLine()) == 1);

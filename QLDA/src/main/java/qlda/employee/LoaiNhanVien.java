@@ -1,4 +1,4 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 
 public enum LoaiNhanVien {

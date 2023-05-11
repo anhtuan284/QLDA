@@ -1,4 +1,4 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import qlda.config.Config;
 import qlda.phongban.PhongBan;
 import qlda.phongban.QuanLyPhongBan;
 
-public class NhanVienQuanLy extends NhanVien {
+public class NhanVienQuanLy extends Employee {
     private Date ngayNhamChuc;
     
     private List<PhongBan> dsPB = new ArrayList<>();

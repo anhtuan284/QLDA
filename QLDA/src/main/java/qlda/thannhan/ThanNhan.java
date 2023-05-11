@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import qlda.config.Config;
-import qlda.nhanvien.NhanVien;
+import qlda.employee.Employee;
 
 
 public class ThanNhan {
@@ -15,7 +15,7 @@ public class ThanNhan {
     private String gioiTinh;
     private String moiQuanHe;
     
-    private List<NhanVien> dsNV = new ArrayList<>(); // 1 than nhan co the co nhieu NV
+    private List<Employee> dsNV = new ArrayList<>(); // 1 than nhan co the co nhieu NV
 
     public ThanNhan(String hoTen, String ngaySinh, String gioiTinh, String moiQuanHe) throws ParseException {
         this.hoTen = hoTen;

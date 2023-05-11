@@ -3,29 +3,29 @@ package qlda.phongban;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import qlda.nhanvien.NhanVien;
+import qlda.employee.Employee;
 
 public class PhongBan {
     private String tenPB;
     
-    private NhanVien nvQL;
-    private List<NhanVien> dsNVTrucThuoc = new ArrayList<>();
+    private Employee nvQL;
+    private List<Employee> dsNVTrucThuoc = new ArrayList<>();
     
     public PhongBan(String tenPB) {
         this.tenPB = tenPB;
     }
     
-    public boolean isCoNV(NhanVien nv) {
+    public boolean isCoNV(Employee nv) {
         return this.dsNVTrucThuoc.contains(nv);
     }
     
-    public void themNV(NhanVien... arrNV) {
-        for (NhanVien nv: arrNV)
+    public void themNV(Employee... arrNV) {
+        for (Employee nv: arrNV)
             if (!isCoNV(nv))
                 dsNVTrucThuoc.add(nv);
     }
-    public void xoaNV(NhanVien... arrNV) {
-        for (NhanVien nv: arrNV)
+    public void xoaNV(Employee... arrNV) {
+        for (Employee nv: arrNV)
             if (isCoNV(nv))
                 dsNVTrucThuoc.remove(nv);
     }
@@ -61,7 +61,7 @@ public class PhongBan {
         return tenPB;
     }
 
-    public List<NhanVien> getDsNVTrucThuoc() {
+    public List<Employee> getDsNVTrucThuoc() {
         return dsNVTrucThuoc;
     }
 
@@ -70,11 +70,11 @@ public class PhongBan {
         this.tenPB = tenPB;
     }
 
-    public NhanVien getNvQL() {
+    public Employee getNvQL() {
         return nvQL;
     }
 
-    public void setNvQL(NhanVien nvQL) {
+    public void setNvQL(Employee nvQL) {
         this.nvQL = nvQL;
     }
 }

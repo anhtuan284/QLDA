@@ -1,4 +1,4 @@
-package qlda.nhanvien;
+package qlda.employee;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -9,18 +9,17 @@ import java.util.List;
 import java.util.Objects;
 
 import qlda.config.Config;
-import qlda.duan.DuAn;
+import qlda.project.DuAn;
 import qlda.phongban.PhongBan;
-import qlda.phongban.QuanLyPhongBan;
 import qlda.thannhan.ThanNhan;
 
-public abstract class NhanVien {
-    private String maNV;
-    private String hoTen;
-    private Date ngaySinh;
-    private String email;
-    private String gioiTinh;
-    private LoaiNhanVien loaiNV;
+public abstract class Employee {
+    private String emID;
+    private String emName;
+    private Date emDOB;
+    private String emEmail;
+    private String emGender;
+    private LoaiNhanVien emType;
     
     private List<DuAn> dsDA = new ArrayList<>();
     private List<ThanNhan> dsTN = new ArrayList<>();
@@ -29,34 +28,26 @@ public abstract class NhanVien {
     private static final int DU_AN_TOI_DA = 3;
     private static int nNV = 0;
     {
-        this.setMaNV(String.format("NV%03d", ++nNV));
+        this.setEmID(String.format("NV%03d", ++nNV));
     }
     
     
-    public NhanVien(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan phongBan, LoaiNhanVien loai) throws ParseException {
-        this.hoTen = hoTen;
-        this.ngaySinh = Config.f.parse(ngaySinh);
-        this.gioiTinh = gioiTinh;
-        this.email = email;
-        this.loaiNV = loai;
-        this.phongBan = phongBan;
+    public Employee(String name, String dob, String gender, String email, PhongBan department, LoaiNhanVien type) throws ParseException {
+        this.emName = name;
+        this.emDOB = Config.f.parse(dob);
+        this.emGender = gender;
+        this.emEmail = email;
+        this.emType = type;
+        this.phongBan = department;
         this.dsDA = new ArrayList<>();
-        themNVVaoPhongBan(phongBan);
+        themNVVaoPhongBan(department);
     }
 
-    public NhanVien(String hoTen, Date ngaySinh, String email, String gioiTinh, PhongBan phongBan) {
-        this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.email = email;
-        this.gioiTinh = gioiTinh;
-        this.phongBan = phongBan;
-    }
-    
     // ====================================== METHOD =======================================
 
     @Override
     public String toString() {
-        return String.format("%-7s%-20s%-12s%-5s%-20s%s", this.getMaNV(), this.getHoTen(), Config.f.format(this.getNgaySinh()), this.getGioiTinh(), this.loaiNV, this.getEmail());
+        return String.format("%-7s%-20s%-12s%-5s%-20s%s", this.getEmID(), this.getEmName(), Config.f.format(this.getEmDOB()), this.getEmGender(), this.emType, this.getEmEmail());
     }
     
     public abstract double layHeSo();
@@ -67,21 +58,21 @@ public abstract class NhanVien {
     }
     public int tinhTuoi() {
         LocalDate crrDate = LocalDate.now();
-        String []key = Config.f.format(getNgaySinh()).split("/"); 
+        String []key = Config.f.format(getEmDOB()).split("/"); 
         LocalDate dOB = LocalDate.parse(key[2] + "-" + key[1] + "-" + key[0]); // YYYY-MM-dd
         return Period.between(dOB, crrDate).getYears();
     }
     
-    public boolean isCoDuAn(DuAn da) {
+    public boolean isHasProject(DuAn da) {
         return this.dsDA.contains(da);
     }
-    public boolean isFullDA() {
+    public boolean isFullProject() {
         return dsDA.size() >= DU_AN_TOI_DA;
     }
     
-    public boolean themDA(DuAn... da) {
+    public boolean addProject(DuAn... da) {
         for (DuAn duAn: da) 
-            if (!isCoDuAn(duAn) && dsDA.size() < DU_AN_TOI_DA) {
+            if (!isHasProject(duAn) && dsDA.size() < DU_AN_TOI_DA) {
                 dsDA.add(duAn);
                 duAn.themNV(this);
                 return true;
@@ -89,8 +80,8 @@ public abstract class NhanVien {
         return false;
     }
     
-    public void xoaDA(DuAn da) {
-        if(isCoDuAn(da))
+    public void rmProject(DuAn da) {
+        if(isHasProject(da))
             dsDA.remove(da);
     }
     
@@ -125,17 +116,17 @@ public abstract class NhanVien {
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
-        if (!(obj instanceof NhanVien)) return false;
-        NhanVien temp = (NhanVien) obj;
-        return maNV.equals(temp.maNV) || ( hoTen.equals(temp.hoTen) && ngaySinh.equals(temp.ngaySinh));
+        if (!(obj instanceof Employee)) return false;
+        Employee temp = (Employee) obj;
+        return emID.equals(temp.emID) || ( emName.equals(temp.emName) && emDOB.equals(temp.emDOB));
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.maNV);
-        hash = 89 * hash + Objects.hashCode(this.hoTen);
-        hash = 89 * hash + Objects.hashCode(this.ngaySinh);
+        hash = 89 * hash + Objects.hashCode(this.emID);
+        hash = 89 * hash + Objects.hashCode(this.emName);
+        hash = 89 * hash + Objects.hashCode(this.emDOB);
         return hash;
     }
 
@@ -143,44 +134,44 @@ public abstract class NhanVien {
     
     // ================================= GETTER SETTER ====================================
  
-    public String getMaNV() {
-        return maNV;
+    public String getEmID() {
+        return emID;
     }
 
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
+    public void setEmID(String maNV) {
+        this.emID = maNV;
     }
 
-    public Date getNgaySinh() {
-        return ngaySinh;
+    public Date getEmDOB() {
+        return emDOB;
     }
 
     public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
+        this.emDOB = ngaySinh;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    public String getEmName() {
+        return emName;
     }
 
     public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+        this.emName = hoTen;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmEmail() {
+        return emEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.emEmail = email;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
+    public String getEmGender() {
+        return emGender;
     }
 
     public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
+        this.emGender = gioiTinh;
     }
 
     public static int getnNV() {
@@ -216,10 +207,10 @@ public abstract class NhanVien {
     }
 
     public LoaiNhanVien getLoaiNV() {
-        return loaiNV;
+        return emType;
     }
 
     public void setLoaiNV(LoaiNhanVien loaiNV) {
-        this.loaiNV = loaiNV;
+        this.emType = loaiNV;
     }
 }
