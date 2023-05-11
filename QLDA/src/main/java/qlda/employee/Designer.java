@@ -8,7 +8,7 @@ import qlda.phongban.PhongBan;
 public class Designer extends Employee{
     private double bonus;
 
-    public Designer(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, double bonus) throws ParseException {
+    public Designer(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, EmployeeType loaiNV, double bonus) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.bonus = bonus;
     }

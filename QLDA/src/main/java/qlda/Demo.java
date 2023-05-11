@@ -6,11 +6,11 @@ import java.util.List;
 import qlda.config.Config;
 import qlda.project.DuAn;
 import qlda.project.QuanLyDuAn;
-import qlda.employee.KiemThuVien;
-import qlda.employee.LapTrinhVien;
-import qlda.employee.LoaiNhanVien;
+import qlda.employee.Tester;
+import qlda.employee.Developer;
+import qlda.employee.EmployeeType;
 import qlda.employee.Employee;
-import qlda.employee.NhanVienThuong;
+import qlda.employee.NormalEmployee;
 import qlda.employee.QuanLyNhanVien;
 import qlda.employee.Designer;
 import qlda.phongban.PhongBan;
@@ -31,18 +31,18 @@ public class Demo {
         PhongBan pb5 = new PhongBan("Phong Ke Kiem");
         
         
-        Employee nv1 = new LapTrinhVien("Anh Tuan","20/3/2003", "Nam",  "at@", pb1, LoaiNhanVien.NHAN_VIEN_THUONG, 20);
-        Employee nv2 = new KiemThuVien("Nguyen Mui","20/5/2003", "Nu", "huutu1098@gmail.com", pb2, LoaiNhanVien.KIEM_THU_VIEN, 39);
-        Employee nv3 = new Designer("Nguyen Huu Tinh", "20/1/2006", "Nam", "tinh@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_QUAN_LY, 999);
-        Employee nv4 = new NhanVienThuong("Nguyen Huu Tu","20/3/2008", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv5 = new Designer("Nguyen Huu Tu","20/3/2003", "Nam", "tuj293@gmail.com", pb5, LoaiNhanVien.THIET_KE_VIEN, 50);
-        Employee nv6 = new NhanVienThuong("Tran Duc An","20/3/2008", "Nam", "an200@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv7 = new NhanVienThuong("Nguyen Manh","20/3/2008", "Nam", "huutu1098@gmail.com", pb1, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv8 = new NhanVienThuong("An Vy","22/4/2008", "NU", "huutu1098@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv9 = new NhanVienThuong("Hong Loc","12/3/2004", "Nam", "huutu1098@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv10 = new NhanVienThuong("Huy Vo","10/3/2001", "Nam", "huyvo@gmail.com", pb2, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv11 = new NhanVienThuong("Huy Dinh","30/3/2001", "Nam", "dinhuy@gmail.com", pb4, LoaiNhanVien.NHAN_VIEN_THUONG);
-        Employee nv12 = new NhanVienThuong("Tuan Tran","1/3/2001", "Nam", "huu98@gmail.com", pb3, LoaiNhanVien.NHAN_VIEN_THUONG);
+        Employee nv1 = new Developer("Anh Tuan","20/3/2003", "Nam",  "at@", pb1, EmployeeType.NHAN_VIEN_THUONG, 20);
+        Employee nv2 = new Tester("Nguyen Mui","20/5/2003", "Nu", "huutu1098@gmail.com", pb2, EmployeeType.KIEM_THU_VIEN, 39);
+        Employee nv3 = new Designer("Nguyen Huu Tinh", "20/1/2006", "Nam", "tinh@gmail.com", pb1, EmployeeType.NHAN_VIEN_QUAN_LY, 999);
+        Employee nv4 = new NormalEmployee("Nguyen Huu Tu","20/3/2008", "Nam", "huutu1098@gmail.com", pb3, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv5 = new Designer("Nguyen Huu Tu","20/3/2003", "Nam", "tuj293@gmail.com", pb5, EmployeeType.THIET_KE_VIEN, 50);
+        Employee nv6 = new NormalEmployee("Tran Duc An","20/3/2008", "Nam", "an200@gmail.com", pb2, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv7 = new NormalEmployee("Nguyen Manh","20/3/2008", "Nam", "huutu1098@gmail.com", pb1, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv8 = new NormalEmployee("An Vy","22/4/2008", "NU", "huutu1098@gmail.com", pb4, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv9 = new NormalEmployee("Hong Loc","12/3/2004", "Nam", "huutu1098@gmail.com", pb3, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv10 = new NormalEmployee("Huy Vo","10/3/2001", "Nam", "huyvo@gmail.com", pb2, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv11 = new NormalEmployee("Huy Dinh","30/3/2001", "Nam", "dinhuy@gmail.com", pb4, EmployeeType.NHAN_VIEN_THUONG);
+        Employee nv12 = new NormalEmployee("Tuan Tran","1/3/2001", "Nam", "huu98@gmail.com", pb3, EmployeeType.NHAN_VIEN_THUONG);
         
         
         DuAn da1 = new DuAn("Pha nha", "2/2/2020", "21/3/2023", 12120.44, nv5, nv2, nv3, nv6, nv8, nv1, nv7);

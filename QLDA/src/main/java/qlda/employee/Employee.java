@@ -19,7 +19,7 @@ public abstract class Employee {
     private Date emDOB;
     private String emEmail;
     private String emGender;
-    private LoaiNhanVien emType;
+    private EmployeeType emType;
     
     private List<DuAn> dsDA = new ArrayList<>();
     private List<ThanNhan> dsTN = new ArrayList<>();
@@ -32,7 +32,7 @@ public abstract class Employee {
     }
     
     
-    public Employee(String name, String dob, String gender, String email, PhongBan department, LoaiNhanVien type) throws ParseException {
+    public Employee(String name, String dob, String gender, String email, PhongBan department, EmployeeType type) throws ParseException {
         this.emName = name;
         this.emDOB = Config.f.parse(dob);
         this.emGender = gender;
@@ -206,11 +206,11 @@ public abstract class Employee {
         this.phongBan = phongBan;
     }
 
-    public LoaiNhanVien getLoaiNV() {
+    public EmployeeType getLoaiNV() {
         return emType;
     }
 
-    public void setLoaiNV(LoaiNhanVien loaiNV) {
+    public void setLoaiNV(EmployeeType loaiNV) {
         this.emType = loaiNV;
     }
 }

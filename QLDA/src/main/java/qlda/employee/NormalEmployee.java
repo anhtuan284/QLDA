@@ -3,10 +3,10 @@ package qlda.employee;
 import java.text.ParseException;
 import qlda.phongban.PhongBan;
 
-public class NhanVienThuong extends Employee{
+public class NormalEmployee extends Employee{
 
     // ================================ METHOD ===================================
-    public NhanVienThuong(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV) throws ParseException {
+    public NormalEmployee(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, EmployeeType loaiNV) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
     }
 

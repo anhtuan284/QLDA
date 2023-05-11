@@ -40,24 +40,24 @@ public class QuanLyNhanVien {
         System.out.print("Kieu Nhan Vien: \n[1]: Nhan Vien Thuong\n[2]: Nhan Vien Quan Ly\n[3]: Lap Trinh Vien\n[4]: Thiet Ke Vien\n[5]: Kiem Thu Vien\n~> Kieu nhan vien: ");
         switch(Integer.parseInt(Config.sc.nextLine())) {
             case 1:
-                return new NhanVienThuong(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_THUONG);
+                return new NormalEmployee(hoTen, ngaySinh, gioiTinh, email, pb, EmployeeType.NHAN_VIEN_THUONG);
             case 2:
                 System.out.print("Nhap ngay nham chuc: ");
                 String ngayNC = Config.sc.nextLine();
                 System.out.println("Nhap ten phong ban Quan Ly: ");
-                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.NHAN_VIEN_QUAN_LY, ngayNC, qlpb.timKiem(Config.sc.nextLine()));
+                return new NhanVienQuanLy(hoTen, ngaySinh, gioiTinh, email, pb, EmployeeType.NHAN_VIEN_QUAN_LY, ngayNC, qlpb.timKiem(Config.sc.nextLine()));
             case 3:
                 System.out.print("Luong OT: ");
                 double luongOT = Double.parseDouble(Config.sc.nextLine());
-                return new LapTrinhVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.LAP_TRINH_VIEN, luongOT);
+                return new Developer(hoTen, ngaySinh, gioiTinh, email, pb, EmployeeType.LAP_TRINH_VIEN, luongOT);
             case 4:
                 System.out.print("Bonus: ");
                 double bonus = Double.parseDouble(Config.sc.nextLine());
-                return new Designer(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.THIET_KE_VIEN, bonus);
+                return new Designer(hoTen, ngaySinh, gioiTinh, email, pb, EmployeeType.THIET_KE_VIEN, bonus);
             case 5:
                 System.out.print("So loi phat hien: ");
                 int nError = Integer.parseInt(Config.sc.nextLine());
-                return new KiemThuVien(hoTen, ngaySinh, gioiTinh, email, pb, LoaiNhanVien.KIEM_THU_VIEN, nError);
+                return new Tester(hoTen, ngaySinh, gioiTinh, email, pb, EmployeeType.KIEM_THU_VIEN, nError);
         }
         return null;
     }

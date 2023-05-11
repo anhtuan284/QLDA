@@ -15,7 +15,7 @@ public class NhanVienQuanLy extends Employee {
     private static final int PHONG_BAN_QUAN_LY_TOI_DA = 2;
     //================== METHODS =====================
 
-    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, LoaiNhanVien loaiNV, String ngayNhamChuc, List<PhongBan> dsPBQL) throws ParseException {
+    public NhanVienQuanLy(String hoTen, String ngaySinh, String gioiTinh, String email, PhongBan pb, EmployeeType loaiNV, String ngayNhamChuc, List<PhongBan> dsPBQL) throws ParseException {
         super(hoTen, ngaySinh, gioiTinh, email, pb, loaiNV);
         this.ngayNhamChuc = Config.f.parse(ngayNhamChuc);
         this.dsPB = dsPBQL;

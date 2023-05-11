@@ -1,7 +1,7 @@
 package qlda.employee;
 
 
-public enum LoaiNhanVien {
+public enum EmployeeType {
     NHAN_VIEN_THUONG(1, 0) {
         @Override
         public String toString() {
@@ -36,7 +36,7 @@ public enum LoaiNhanVien {
     private double heSoLuong;
     private double phuCap;
     
-    private LoaiNhanVien(double heSoLuong, double phuCap) {
+    private EmployeeType(double heSoLuong, double phuCap) {
         this.heSoLuong = heSoLuong;
         this.phuCap = phuCap;
     }
